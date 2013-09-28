@@ -8,6 +8,9 @@ from os.path import abspath, basename, dirname, join, normpath
 from django.core.exceptions import ImproperlyConfigured
 from django.conf import global_settings as DEFAULT_SETTINGS
 
+import djcelery
+djcelery.setup_loader()
+
 def get_env_setting(setting, default=None):
     """ Get the environment setting or return exception """
     try:
@@ -158,8 +161,16 @@ INSTALLED_APPS = (
     'allauth.socialaccount',
     'allauth.socialaccount.providers.github',
 
+    'djcelery',
+
     'cookiecutters',
+    
 )
+
+
+COOKIECUTTERS_DIR = join(SITE_ROOT, 'cookiecutters')
+COOKIECUTTERS_TMP = '/tmp'
+
 
 # SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
 
