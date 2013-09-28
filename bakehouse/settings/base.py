@@ -6,7 +6,7 @@ from sys import path
 from os.path import abspath, basename, dirname, join, normpath
 
 from django.core.exceptions import ImproperlyConfigured
-
+from django.conf import global_settings as DEFAULT_SETTINGS
 
 def get_env_setting(setting, default=None):
     """ Get the environment setting or return exception """
@@ -133,6 +133,15 @@ TEMPLATE_DIRS = (
     normpath(join(SITE_ROOT, 'templates')),
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = DEFAULT_SETTINGS.TEMPLATE_CONTEXT_PROCESSORS + (
+    "allauth.account.context_processors.account",
+    "allauth.socialaccount.context_processors.socialaccount",
+)
+
+AUTHENTICATION_BACKENDS = DEFAULT_SETTINGS.AUTHENTICATION_BACKENDS + (
+    "allauth.account.auth_backends.AuthenticationBackend",
+)
+
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.admin',
@@ -143,9 +152,14 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     'south',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.github',
 )
 
-SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
+# SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

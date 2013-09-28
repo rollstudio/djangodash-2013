@@ -16,5 +16,6 @@ urlpatterns = patterns('',
     url(r'^$', ComingView.as_view(), name='home'),
     # url(r'^bakehouse/', include('bakehouse.foo.urls')),
 
+    url(r'^accounts/', include('allauth.urls')),
     url(r'^admin/', include(admin.site.urls)),
 )
