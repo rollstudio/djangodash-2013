@@ -21,11 +21,17 @@ djangodash-2013
     $ pip install -r requirements/production.txt
 
     $ sudo -s
-    $  export SECRET_KEY='random key'
-    $  export AWS_ACCESS_KEY_ID=
-    $  export AWS_SECRET_ACCESS_KEY
+    #  export SECRET_KEY='random key'
+    #  export AWS_ACCESS_KEY_ID=
+    #  export AWS_SECRET_ACCESS_KEY
+    # ./manage.py migrate
     
-    # edit bakehouse.settings.production
-    # change ALLOWED_HOSTS, AWS_STORAGE_BUCKET_NAME
-    # and STATIC_URL
+Edit bakehouse.settings.production
+change `ALLOWED_HOSTS`, `AWS_STORAGE_BUCKET_NAME` and `STATIC_URL`.
 
+Then you can start uwsgi. Remember to drop root privileges using the `uid` and `gid` flags:
+
+    # uwsgi --ini uwsgi.ini --uid 1000 --gid 1003
+
+Now you have to start a celery worker:
+    $ ./manage.py celery worker --loglevel=info
