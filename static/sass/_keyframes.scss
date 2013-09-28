@@ -1,0 +1,27 @@
+@include keyframes(moveFromRightFade) {
+	from {
+		@include opacity(0);
+		@include transform( translateX(100%) );
+	}
+}
+
+@include keyframes(moveToRightFade) {
+	to {
+		@include opacity(0);
+		@include transform( translateX(100%) );
+	}
+}
+
+@include keyframes(moveToLeftFade) {
+	to {
+		@include opacity(0);
+		@include transform( translateX(-100%) );
+	}
+}
+
+@include keyframes(moveFromLeftFade) {
+	from {
+		@include opacity(0);
+		@include transform( translateX(-100%) );
+	}
+}

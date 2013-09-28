@@ -1,0 +1,419 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+/* line 17, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* line 22, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html {
+  line-height: 1;
+}
+
+/* line 24, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 26, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 28, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 30, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 103, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 32, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 116, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+  display: block;
+}
+
+@-webkit-keyframes moveFromRightFade {
+  /* line 2, ../sass/_keyframes.scss */
+  from {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+    -webkit-transform: translateX(100%);
+    -moz-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    -o-transform: translateX(100%);
+    transform: translateX(100%);
+  }
+}
+
+@-moz-keyframes moveFromRightFade {
+  /* line 2, ../sass/_keyframes.scss */
+  from {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+    -webkit-transform: translateX(100%);
+    -moz-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    -o-transform: translateX(100%);
+    transform: translateX(100%);
+  }
+}
+
+@-ms-keyframes moveFromRightFade {
+  /* line 2, ../sass/_keyframes.scss */
+  from {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+    -webkit-transform: translateX(100%);
+    -moz-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    -o-transform: translateX(100%);
+    transform: translateX(100%);
+  }
+}
+
+@-o-keyframes moveFromRightFade {
+  /* line 2, ../sass/_keyframes.scss */
+  from {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+    -webkit-transform: translateX(100%);
+    -moz-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    -o-transform: translateX(100%);
+    transform: translateX(100%);
+  }
+}
+
+@keyframes moveFromRightFade {
+  /* line 2, ../sass/_keyframes.scss */
+  from {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+    -webkit-transform: translateX(100%);
+    -moz-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    -o-transform: translateX(100%);
+    transform: translateX(100%);
+  }
+}
+
+@-webkit-keyframes moveToRightFade {
+  /* line 9, ../sass/_keyframes.scss */
+  to {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+    -webkit-transform: translateX(100%);
+    -moz-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    -o-transform: translateX(100%);
+    transform: translateX(100%);
+  }
+}
+
+@-moz-keyframes moveToRightFade {
+  /* line 9, ../sass/_keyframes.scss */
+  to {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+    -webkit-transform: translateX(100%);
+    -moz-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    -o-transform: translateX(100%);
+    transform: translateX(100%);
+  }
+}
+
+@-ms-keyframes moveToRightFade {
+  /* line 9, ../sass/_keyframes.scss */
+  to {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+    -webkit-transform: translateX(100%);
+    -moz-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    -o-transform: translateX(100%);
+    transform: translateX(100%);
+  }
+}
+
+@-o-keyframes moveToRightFade {
+  /* line 9, ../sass/_keyframes.scss */
+  to {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+    -webkit-transform: translateX(100%);
+    -moz-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    -o-transform: translateX(100%);
+    transform: translateX(100%);
+  }
+}
+
+@keyframes moveToRightFade {
+  /* line 9, ../sass/_keyframes.scss */
+  to {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+    -webkit-transform: translateX(100%);
+    -moz-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    -o-transform: translateX(100%);
+    transform: translateX(100%);
+  }
+}
+
+@-webkit-keyframes moveToLeftFade {
+  /* line 16, ../sass/_keyframes.scss */
+  to {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+    -webkit-transform: translateX(-100%);
+    -moz-transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
+    -o-transform: translateX(-100%);
+    transform: translateX(-100%);
+  }
+}
+
+@-moz-keyframes moveToLeftFade {
+  /* line 16, ../sass/_keyframes.scss */
+  to {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+    -webkit-transform: translateX(-100%);
+    -moz-transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
+    -o-transform: translateX(-100%);
+    transform: translateX(-100%);
+  }
+}
+
+@-ms-keyframes moveToLeftFade {
+  /* line 16, ../sass/_keyframes.scss */
+  to {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+    -webkit-transform: translateX(-100%);
+    -moz-transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
+    -o-transform: translateX(-100%);
+    transform: translateX(-100%);
+  }
+}
+
+@-o-keyframes moveToLeftFade {
+  /* line 16, ../sass/_keyframes.scss */
+  to {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+    -webkit-transform: translateX(-100%);
+    -moz-transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
+    -o-transform: translateX(-100%);
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes moveToLeftFade {
+  /* line 16, ../sass/_keyframes.scss */
+  to {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+    -webkit-transform: translateX(-100%);
+    -moz-transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
+    -o-transform: translateX(-100%);
+    transform: translateX(-100%);
+  }
+}
+
+@-webkit-keyframes moveFromLeftFade {
+  /* line 23, ../sass/_keyframes.scss */
+  from {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+    -webkit-transform: translateX(-100%);
+    -moz-transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
+    -o-transform: translateX(-100%);
+    transform: translateX(-100%);
+  }
+}
+
+@-moz-keyframes moveFromLeftFade {
+  /* line 23, ../sass/_keyframes.scss */
+  from {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+    -webkit-transform: translateX(-100%);
+    -moz-transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
+    -o-transform: translateX(-100%);
+    transform: translateX(-100%);
+  }
+}
+
+@-ms-keyframes moveFromLeftFade {
+  /* line 23, ../sass/_keyframes.scss */
+  from {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+    -webkit-transform: translateX(-100%);
+    -moz-transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
+    -o-transform: translateX(-100%);
+    transform: translateX(-100%);
+  }
+}
+
+@-o-keyframes moveFromLeftFade {
+  /* line 23, ../sass/_keyframes.scss */
+  from {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+    -webkit-transform: translateX(-100%);
+    -moz-transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
+    -o-transform: translateX(-100%);
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes moveFromLeftFade {
+  /* line 23, ../sass/_keyframes.scss */
+  from {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+    -webkit-transform: translateX(-100%);
+    -moz-transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
+    -o-transform: translateX(-100%);
+    transform: translateX(-100%);
+  }
+}
+
+/* line 12, ../sass/screen.scss */
+.container {
+  width: 700px;
+  margin: 0px auto;
+  margin-top: 200px;
+}
+/* line 17, ../sass/screen.scss */
+.container #breadcrumb {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  height: 5px;
+  margin: 0px auto;
+  background-color: red;
+}
+/* line 26, ../sass/screen.scss */
+.container #breadcrumb span {
+  display: block;
+  position: absolute;
+  top: -3px;
+  height: 10px;
+  width: 10px;
+  margin-left: -5px;
+  background-color: blue;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  border-radius: 50%;
+}
+/* line 36, ../sass/screen.scss */
+.container #breadcrumb span.current {
+  background-color: gold;
+}
+/* line 42, ../sass/screen.scss */
+.container #steps {
+  margin-top: 20px;
+  position: relative;
+  width: 100%;
+  height: 500px;
+  list-style: none;
+}
+/* line 49, ../sass/screen.scss */
+.container #steps li {
+  position: absolute;
+  visibility: hidden;
+  height: 100%;
+  width: 100%;
+  background-color: red;
+}
+/* line 57, ../sass/screen.scss */
+.container #steps li.current {
+  visibility: visible;
+}
+
+/* line 66, ../sass/screen.scss */
+.moveToLeftFade {
+  -webkit-animation: moveToLeftFade 0.7s ease both;
+  -moz-animation: moveToLeftFade 0.7s ease both;
+  -o-animation: moveToLeftFade 0.7s ease both;
+  -ms-animation: moveToLeftFade 0.7s ease both;
+  animation: moveToLeftFade 0.7s ease both;
+}
+
+/* line 69, ../sass/screen.scss */
+.moveFromRightFade {
+  -webkit-animation: moveFromRightFade 0.7s ease both;
+  -moz-animation: moveFromRightFade 0.7s ease both;
+  -o-animation: moveFromRightFade 0.7s ease both;
+  -ms-animation: moveFromRightFade 0.7s ease both;
+  animation: moveFromRightFade 0.7s ease both;
+}
+
+/* line 72, ../sass/screen.scss */
+.moveToRightFade {
+  -webkit-animation: moveToRightFade 0.7s ease both;
+  -moz-animation: moveToRightFade 0.7s ease both;
+  -o-animation: moveToRightFade 0.7s ease both;
+  -ms-animation: moveToRightFade 0.7s ease both;
+  animation: moveToRightFade 0.7s ease both;
+}
+
+/* line 75, ../sass/screen.scss */
+.moveFromLeftFade {
+  -webkit-animation: moveFromLeftFade 0.7s ease both;
+  -moz-animation: moveFromLeftFade 0.7s ease both;
+  -o-animation: moveFromLeftFade 0.7s ease both;
+  -ms-animation: moveFromLeftFade 0.7s ease both;
+  animation: moveFromLeftFade 0.7s ease both;
+}
