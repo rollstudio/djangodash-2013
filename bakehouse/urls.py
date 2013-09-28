@@ -4,9 +4,17 @@ from django.conf.urls import patterns, include, url
 # from django.contrib import admin
 # admin.autodiscover()
 
+# TODO: remove
+from django.views.generic.base import TemplateView
+
+
+class ComingView(TemplateView):
+    template_name = 'coming.html'
+
+
 urlpatterns = patterns('',
     # Examples:
-    # url(r'^$', 'bakehouse.views.home', name='home'),
+    url(r'^$', ComingView.as_view(), name='home'),
     # url(r'^bakehouse/', include('bakehouse.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
