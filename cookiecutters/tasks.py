@@ -4,7 +4,7 @@ import shutil
 from django.conf import settings
 from gittle import Gittle
 from celery import task
-from cookiecutter.generate import generate_files
+# from cookiecutter.generate import generate_files
 from baker import utils
 
 
