@@ -169,7 +169,7 @@ INSTALLED_APPS = (
 
 
 COOKIECUTTERS_DIR = '/tmp/cookiecutters'
-COOKIECUTTERS_TMP = '/tmp'
+COOKIECUTTERS_TMP = '/tmp/cookiecutters_out'
 
 
 # SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
@@ -210,3 +210,4 @@ LOGGING = {
 }
 
 GITHUB_COOKIECUTTER_USERNAME = 'bakehouse'
+GITHUB_PRIVATE_KEY = join(SITE_ROOT, 'id_rsa')

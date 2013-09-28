@@ -27,6 +27,7 @@ def create_repository(user, repo_name):
 
 def push_directory_to_repo(directory, github_repo):
     repo = Gittle.init(directory)
+    repo.auth(pkey=open(settings.GITHUB_PRIVATE_KEY))
 
     for root, dirnames, filenames in os.walk(directory):
         # skip .git directories
@@ -37,9 +38,8 @@ def push_directory_to_repo(directory, github_repo):
             path = os.path.join(root, f)
 
             # was not working with absolute paths
-            repo.add(path.lstrip(directory))
+            repo.add(str(path.lstrip(directory)))
 
 
-    repo.commit(name='ci', message='Hello world')
-
+    repo.commit(name='bakehouse', message='Hello world')
     repo.push(github_repo.ssh_url, branch_name='master')

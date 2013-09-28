@@ -6,4 +6,6 @@ djorm-ext-expressions==0.5
 djorm-ext-pgarray==0.8
 psycopg2==2.5.1
 django-celery==3.0.23
+git+https://github.com/audreyr/cookiecutter.git#egg=cookiecutter
+github3.py==0.7.0
 https://github.com/patrick91/gittle/zipball/master
