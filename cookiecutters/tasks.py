@@ -30,6 +30,6 @@ def exec_cookiecutter(cookie, user, options):
     try:
         generate_files(cookie.repo_path, {'cookiecutter': options}, out)
         repo = utils.create_repository(user, options['repo_name'])
-        utils.push_directory_to_repo(out, repo)
+        utils.push_directory_to_repo(os.path.join(out, options['repo_name']), repo)
     finally:
         shutil.rmtree(out)
