@@ -1,4 +1,5 @@
 import os
+import json
 
 from django.conf import settings
 from django.db import models
@@ -11,6 +12,18 @@ from djorm_expressions.models import ExpressionManager
 from djorm_expressions.base import SqlExpression
 
 from cookiecutters import tasks
+
+
+class Question(object):
+    def __init__(self, name, default):
+        self.name = name
+        self.default = default
+
+    def __unicode__(self):
+        return self.name.replace('_', ' ').title()
+
+    def __str__(self):
+        return self.name.replace('_', ' ').title()
 
 
 class ArrayExpression(object):
@@ -46,6 +59,24 @@ class CookieCutter(models.Model):
         return os.path.join(settings.COOKIECUTTERS_DIR,
                 self.user.username, self.name)
 
+    @cached_property
+    def questions(self):
+        questions = []
+
+        path = self.repo_path
+
+        json_file = os.path.join(path, 'cookiecutter.json')
+
+        with open(json_file) as f:
+            j = json.load(f)
+
+            for name, default in j.iteritems():
+                q = Question(name, default)
+
+                questions.append(q)
+
+        return questions
+
 
     def __unicode__(self):
         return u"%s/%s" % (self.user.username, self.name)
@@ -55,6 +86,6 @@ class CookieCutter(models.Model):
 def cookie_post_save(sender, instance, created, **kwargs):
     if created:
         tasks.update_repo.delay(instance)
-    
+
 
 post_save.connect(cookie_post_save, sender=CookieCutter)
