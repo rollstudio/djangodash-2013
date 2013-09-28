@@ -13,10 +13,10 @@ class FixedGittleAuth(GittleAuth):
     KWARG_KEYS = ()
 
 
-def create_repository(user, repo_name):
+def create_repository(user_id, repo_name):
     '''Creates a repo with the API and adds our user in order to push the skeleton there'''
 
-    token_model = SocialToken.objects.get(account__user=user, account__provider='github')
+    token_model = SocialToken.objects.get(account__user=user_id, account__provider='github')
     token = token_model.token
 
     g = login(token=token)

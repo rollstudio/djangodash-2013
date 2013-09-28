@@ -27,13 +27,13 @@ def update_repo(cookie):
 
 
 @task()
-def exec_cookiecutter(cookie, user, options):
+def exec_cookiecutter(cookie, user_id, options):
     assert 'repo_name' in options
 
-    out = os.path.join(settings.COOKIECUTTERS_TMP, user.username)
+    out = os.path.join(settings.COOKIECUTTERS_TMP, "user_{0}".format(user_id))
     try:
         generate_files(cookie.repo_path, {'cookiecutter': options}, out)
-        repo = utils.create_repository(user, options['repo_name'])
+        repo = utils.create_repository(user_id, options['repo_name'])
         utils.push_directory_to_repo(os.path.join(out, options['repo_name']), repo)
     finally:
         shutil.rmtree(out)
