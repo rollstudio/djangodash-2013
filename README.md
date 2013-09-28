@@ -18,9 +18,11 @@ djangodash-2013
     $ sudo apt-get install rabbitmq-server
 
     $ cd dash13
+    $ mkdir logs
     $ pip install -r requirements/production.txt
 
     $ sudo -s
+    # export DJANGO_SETTINGS_MODULE=bakehouse.settings.production
     #  export SECRET_KEY='random key'
     #  export AWS_ACCESS_KEY_ID=
     #  export AWS_SECRET_ACCESS_KEY
