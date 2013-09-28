@@ -15,7 +15,7 @@ class Migration(SchemaMigration):
             ('description', self.gf('django.db.models.fields.TextField')()),
             ('url', self.gf('django.db.models.fields.URLField')(max_length=200)),
             ('language', self.gf('django.db.models.fields.CharField')(max_length=50)),
-            ('tags', self.gf('djorm_pgarray.fields.ArrayField')(default=None, null=True, blank=True)),
+            ('tags', self.gf('djorm_pgarray.fields.ArrayField')(default=None, dbtype='text', null=True, blank=True)),
         ))
         db.send_create_signal(u'cookiecutters', ['CookieCutter'])
 
@@ -31,7 +31,7 @@ class Migration(SchemaMigration):
             'description': ('django.db.models.fields.TextField', [], {}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'language': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
-            'tags': ('djorm_pgarray.fields.ArrayField', [], {'default': 'None', 'null': 'True', 'blank': 'True'}),
+            'tags': ('djorm_pgarray.fields.ArrayField', [], {'default': 'None', 'dbtype': "'text'", 'null': 'True', 'blank': 'True'}),
             'title': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'url': ('django.db.models.fields.URLField', [], {'max_length': '200'})
         }
