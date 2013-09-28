@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>{{ cookie.name }}</h1>
+
+<span>{{ cookie.url }}</span>
+
+<ul>
+{% for opt, default in cookie.options %}
+<li>{{ opt }} ({{ default }})</li>
+{% endfor %}
+</ul>
+
+{% endblock content %}
