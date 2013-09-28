@@ -1,0 +1,66 @@
+@mixin bg_img($img) {
+	background-image:image-url($img);
+	background-repeat:no-repeat;
+	width:image-width($img);
+	height:image-height($img);
+}
+
+@mixin bg_and_center($img) {
+  position: absolute;
+  background-image:image-url($img);
+  background-repeat:no-repeat;
+  width:image-width($img);
+  height:image-height($img);
+  left: 50%;
+  top: 50%;
+  margin-left: -(image-width($img)/2);
+  margin-top: -(image-height($img)/2);
+}
+
+@mixin vertical_center($img) {
+	position: relative;
+	top: 50%;
+	margin-top: -(image-height($img)/2);
+}
+
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content; 
+  }
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+  @-ms-keyframes #{$name} {
+    @content;
+  }
+  @-o-keyframes #{$name} {
+    @content;
+  }
+  @keyframes #{$name} {
+    @content;
+  } 
+}
+
+@mixin animation($animation) {
+    -webkit-animation: #{$animation};
+    -moz-animation: #{$animation};
+    -o-animation: #{$animation};
+    -ms-animation: #{$animation};
+    animation: #{$animation};
+}
+
+@mixin backface($type) {
+    -webkit-backface-visibility: #{$type};
+    -moz-backface-visibility: #{$type};
+    -o-backface-visibility: #{$type};
+    -ms-backface-visibility: #{$type};
+    backface-visibility: #{$type};
+}
+
+@mixin perspective($type) {
+  -webkit-perspective: #{$type};
+  -moz-perspective: #{$type};
+  -o-perspective: #{$type};
+  -ms-perspective: #{$type};
+  perspective: #{$type};
+}
