@@ -168,7 +168,7 @@ INSTALLED_APPS = (
 )
 
 
-COOKIECUTTERS_DIR = join(SITE_ROOT, 'cookiecutters')
+COOKIECUTTERS_DIR = '/tmp/cookiecutters'
 COOKIECUTTERS_TMP = '/tmp'
 
 

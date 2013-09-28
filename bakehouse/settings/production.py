@@ -43,6 +43,8 @@ STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 STATIC_ROOT = ''
 STATIC_URL = 'http://static.tyrion.mx/'
 
+BROKER_URL = 'amqp://guest:guest@localhost:5672/'
+
 
 LOGGING = {
     'version': 1,
@@ -59,7 +61,8 @@ LOGGING = {
         # Log to a text file that can be rotated by logrotate
         'logfile': {
             'class': 'logging.handlers.WatchedFileHandler',
-            'filename': '/var/log/django/myapp.log'
+            #'filename': '/var/log/django/myapp.log'
+            'filename': join(SITE_ROOT, 'logs', 'django.log')
         },
     },
     'loggers': {
