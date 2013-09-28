@@ -197,3 +197,5 @@ LOGGING = {
         },
     }
 }
+
+GITHUB_COOKIECUTTER_USERNAME = 'bakehouse'
