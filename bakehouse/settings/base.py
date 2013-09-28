@@ -1,6 +1,35 @@
 # Django settings for bakehouse project.
 
-DEBUG = True
+from os import environ
+from sys import path
+
+from os.path import abspath, basename, dirname, join, normpath
+
+from django.core.exceptions import ImproperlyConfigured
+
+
+def get_env_setting(setting, default=None):
+    """ Get the environment setting or return exception """
+    try:
+        return environ[setting]
+    except KeyError:
+        if default is not None:
+            return default
+
+        error_msg = "Set the %s env variable" % setting
+        raise ImproperlyConfigured(error_msg)
+
+
+########## PATH CONFIGURATION
+
+DJANGO_ROOT = dirname(dirname(abspath(__file__)))
+SITE_ROOT = dirname(DJANGO_ROOT)
+SITE_NAME = basename(DJANGO_ROOT)
+
+path.append(DJANGO_ROOT)
+
+
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -57,21 +86,14 @@ MEDIA_ROOT = ''
 # Examples: "http://example.com/media/", "http://media.example.com/"
 MEDIA_URL = ''
 
-# Absolute path to the directory static files should be collected to.
-# Don't put anything in this directory yourself; store your static files
-# in apps' "static/" subdirectories and in STATICFILES_DIRS.
-# Example: "/var/www/example.com/static/"
-STATIC_ROOT = ''
+STATIC_ROOT = normpath(join(SITE_ROOT, 'assets'))
 
-# URL prefix for static files.
-# Example: "http://example.com/static/", "http://static.example.com/"
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#static-url
 STATIC_URL = '/static/'
 
-# Additional locations of static files
+# See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
 STATICFILES_DIRS = (
-    # Put strings here, like "/home/html/static" or "C:/www/django/static".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
+    normpath(join(SITE_ROOT, 'static')),
 )
 
 # List of finder classes that know how to find static files in
@@ -83,7 +105,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'al!!q!3q50p9!7e=$j+eac=&r1&og%)scuws$j_jtyu5mr&d&q'
+SECRET_KEY = get_env_setting('SECRET_KEY', 'al!!q!3q50p9!7e=$j+eac=&r1&og%)scuws$j_jtyu5mr&d&q')
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -108,9 +130,7 @@ ROOT_URLCONF = 'bakehouse.urls'
 WSGI_APPLICATION = 'bakehouse.wsgi.application'
 
 TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
+    normpath(join(SITE_ROOT, 'templates')),
 )
 
 INSTALLED_APPS = (
