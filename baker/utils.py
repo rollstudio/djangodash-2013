@@ -1,5 +1,7 @@
 import os
 
+from fabric.api import local, lcd
+
 from github3 import login
 from gittle import Gittle
 
@@ -27,19 +29,16 @@ def create_repository(user, repo_name):
 
 def push_directory_to_repo(directory, github_repo):
     repo = Gittle.init(directory)
-    repo.auth(pkey=open(settings.GITHUB_PRIVATE_KEY))
 
-    for root, dirnames, filenames in os.walk(directory):
-        # skip .git directories
-        if '.git' in dirnames:
-            dirnames.remove('.git')
+    keypath = settings.GITHUB_PRIVATE_KEY
 
-        for f in filenames:
-            path = os.path.join(root, f)
+    message = 'Hello world'
 
-            # was not working with absolute paths
-            repo.add(str(path.lstrip(directory)))
+    with lcd(directory):
+        local('git init')
+        local('git add .')
 
+        local('git commit -m {}', message)
 
-    repo.commit(name='bakehouse', message='Hello world')
-    repo.push(github_repo.ssh_url, branch_name='master')
+        local('git remote add origin {}'.format(github_repo.clone_url))
+        local('git push -u origin master')
