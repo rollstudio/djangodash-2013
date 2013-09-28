@@ -8,4 +8,5 @@ psycopg2==2.5.1
 django-celery==3.0.23
 git+https://github.com/audreyr/cookiecutter.git#egg=cookiecutter
 github3.py==0.7.0
+django-json-field==0.5.5
 -e git+https://github.com/patrick91/gittle.git#egg=gittle

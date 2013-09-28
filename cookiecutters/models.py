@@ -11,6 +11,8 @@ from djorm_pgarray.fields import ArrayField
 from djorm_expressions.models import ExpressionManager
 from djorm_expressions.base import SqlExpression
 
+from json_field import JSONField
+
 from cookiecutters import tasks
 
 
@@ -42,7 +44,8 @@ class CookieCutter(models.Model):
     description = models.TextField(_('Description'))
     url = models.URLField(_('URL'))
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
-    options = models.TextField(editable=False)
+    #options = models.TextField(editable=False)
+    options = JSONField(editable=False)
 
     language = models.CharField(_('Language'), max_length=50)
     tags = ArrayField(_('Tags'), dbtype='text')

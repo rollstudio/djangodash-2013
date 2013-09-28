@@ -10,16 +10,20 @@ from baker import utils
 
 @task()
 def update_repo(cookie):
+    # TODO: add commit info to the CookieCutter model
     if not os.path.isdir(cookie.repo_path):
         repo = Gittle.clone(cookie.url, cookie.repo_path)
     else:
         repo = Gittle.init(cookie.repo_path)
         repo.pull()
 
+    cookie.options = {'repo_name': 'your repo'}
+
     options_file = os.path.join(cookie.repo_path, 'cookiecutter.json')
     if os.path.isfile(options_file):
-        cookie.options = open(options_file).read()
-        cookie.save()
+        cookie.options.update(json.load(open(options_file)))
+
+    cookie.save()
 
 
 @task()
