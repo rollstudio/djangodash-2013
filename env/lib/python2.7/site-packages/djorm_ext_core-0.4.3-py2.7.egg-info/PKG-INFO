@@ -1,0 +1,22 @@
+Metadata-Version: 1.1
+Name: djorm-ext-core
+Version: 0.4.3
+Summary: Core module of django orm extensions package. Is a collection of third party plugins build in one unified package.
+Home-page: https://github.com/niwibe/djorm-ext-core
+Author: Andrey Antukh
+Author-email: niwi@niwi.be
+License: BSD
+Description: UNKNOWN
+Platform: OS Independent
+Classifier: Development Status :: 4 - Beta
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Topic :: Internet :: WWW/HTTP

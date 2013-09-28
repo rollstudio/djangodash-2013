@@ -1,0 +1,15 @@
+Metadata-Version: 1.0
+Name: gittle
+Version: 0.2.2
+Summary: A high level pure python git implementation
+Home-page: https://github.com/FriendCode/gittle
+Author: Aaron O'Mullan
+Author-email: aaron@friendco.de
+License: MIT
+Description: 
+            Gittle is a wrapper around dulwich. It provides an easy and familiar interface to git.
+            It's pure python (no dependancy on the git binary) and has no other dependancies besides
+            the python stdlib, dulwich and paramiko (optional).
+            
+Keywords: git dulwich pure python gittle
+Platform: UNKNOWN

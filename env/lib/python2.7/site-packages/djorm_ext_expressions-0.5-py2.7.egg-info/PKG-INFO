@@ -1,0 +1,25 @@
+Metadata-Version: 1.1
+Name: djorm-ext-expressions
+Version: 0.5
+Summary: Facility of complex sql expressions for Django orm.
+Home-page: https://github.com/niwibe/djorm-ext-expressions
+Author: Andrey Antukh
+Author-email: niwi@niwi.be
+License: BSD
+Description: UNKNOWN
+Platform: OS Independent
+Classifier: Development Status :: 4 - Beta
+Classifier: Operating System :: OS Independent
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.2
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Utilities
