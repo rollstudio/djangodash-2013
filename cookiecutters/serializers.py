@@ -31,7 +31,9 @@ class CookieCutterSerializer(serializers.HyperlinkedModelSerializer):
     value = serializers.SerializerMethodField('_value')
 
     def _value(self, obj):
-        return obj.options.get('project_name', 'No name')
+        if obj.options:
+            return obj.options.get('project_name', 'No name')
+        return 'No options'
 
     class Meta:
         model = CookieCutter
