@@ -80,6 +80,8 @@ def make_zip(directory):
 
             zip_file.write(path, arcname)
 
+    zip_file.close()
+
     k = Key(bucket)
     k.key = filename
     k.set_contents_from_filename(filename)
