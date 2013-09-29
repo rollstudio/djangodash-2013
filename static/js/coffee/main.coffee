@@ -88,12 +88,12 @@ class fRoll
 						window.open json.result
 
 					if @ChoiseDownload == 'github'
-						$('.done').append "
+						$('li#end .done').append "
 							<a href='#{json.result}'>Go to your GitHub repo</a>
 						"
 
 					$('.loading_container').fadeOut 400, ->
-						$('.done').fadeIn()
+						$('li#end .done').fadeIn()
 						$('.milk_bg').animate top: '70%'
 
 

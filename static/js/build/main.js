@@ -94,10 +94,10 @@
               window.open(json.result);
             }
             if (_this.ChoiseDownload === 'github') {
-              $('.done').append("							<a href='" + json.result + "'>Go to your GitHub repo</a>						");
+              $('li#end .done').append("							<a href='" + json.result + "'>Go to your GitHub repo</a>						");
             }
             return $('.loading_container').fadeOut(400, function() {
-              $('.done').fadeIn();
+              $('li#end .done').fadeIn();
               return $('.milk_bg').animate({
                 top: '70%'
               });
