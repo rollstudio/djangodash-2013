@@ -90,6 +90,10 @@ class fRoll
 					if @ChoiseDownload == 'github'
 						console.log 'githuub'
 
+					$('.loading_container').fadeOut 400, ->
+						$('.done').fadeIn()
+						$('.milk_bg').animate top: '70%'
+
 
 	DownloadFiles: ->
 		#LAST STEP
