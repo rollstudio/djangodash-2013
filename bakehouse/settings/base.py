@@ -32,7 +32,7 @@ SITE_NAME = basename(DJANGO_ROOT)
 path.append(DJANGO_ROOT)
 
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -43,13 +43,12 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '',                      # Or path to database file if using sqlite3.
-        # The following settings are not used with sqlite3:
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'dash',
         'USER': '',
         'PASSWORD': '',
-        'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': '',                      # Set to empty string for default.
+        'HOST': '',
+        'PORT': '',
     }
 }
 
@@ -89,7 +88,7 @@ MEDIA_ROOT = ''
 # Examples: "http://example.com/media/", "http://media.example.com/"
 MEDIA_URL = ''
 
-STATIC_ROOT = normpath(join(SITE_ROOT, 'assets'))
+STATIC_ROOT = join(SITE_ROOT, '.h', 'static')
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#static-url
 STATIC_URL = '/static/'
@@ -168,8 +167,8 @@ INSTALLED_APPS = (
 )
 
 
-COOKIECUTTERS_DIR = '/tmp/cookiecutters'
-COOKIECUTTERS_TMP = '/tmp/cookiecutters_out'
+COOKIECUTTERS_DIR = join(SITE_ROOT, '.h', 'cookiecutters')
+COOKIECUTTERS_TMP = join(SITE_ROOT, '.h', 'cookiecutters_out')
 
 
 # SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
@@ -211,3 +210,5 @@ LOGGING = {
 
 GITHUB_COOKIECUTTER_USERNAME = 'bakehouse'
 GITHUB_PRIVATE_KEY = join(SITE_ROOT, 'id_rsa')
+
+BROKER_URL = 'amqp://guest:guest@localhost:5672/'

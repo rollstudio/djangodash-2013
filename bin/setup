@@ -1,0 +1,63 @@
+# -*- mode: sh -*-
+# vi: set ft=sh :
+set -x
+set -o pipefail # trace ERR through pipes
+set -o errexit
+
+# Reference: This was copied from <http://www.linuxcommand.org/wss0150.php>
+PROGNAME=`basename $0`
+
+function fatal_error
+{
+#   ----------------------------------------------------------------
+#   Function for exit due to fatal program error
+#   	Accepts 1 argument:
+#   		string containing descriptive error message
+#   ----------------------------------------------------------------
+
+    echo "${PROGNAME}: ${1:-"Unknown Error"}" 1>&2
+    exit 1
+}
+
+
+#if [[ -f manage.py ]]; then
+[[ -f manage.py ]] || fatal_error "Execute this script from the project dir!"
+
+[[ -d .h ]] || mkdir -v .h
+
+cd .h
+mkdir -p logs cookiecutters cookiecutters_out static
+
+if [[ $VIRTUAL_ENV != "$PWD/env" ]]; then
+    [[ ! -d env ]] && virtualenv env
+    echo "Activating virtual env"
+    source env/bin/activate
+fi
+
+if [[ $VIRTUAL_ENV != "$PWD/env" ]]; then
+    echo "Failed to activate virtualenv."
+    exit 1
+fi
+
+cd ..
+
+function ensure_deps {
+    for file in $@; do
+        if [[ -a ${file} ]]; then
+            pip install -r ${file}
+            #break;
+        fi
+    done
+    echo "Cannot find pip requirements."
+    exit 1
+}
+
+( cd requirements ; ensure_deps custom.txt base.txt )
+
+
+pushd cookiecutters/settings
+
+export DJANGO_SETTINGS_MODULE="cookiecutters.settings.base"
+export SECRET_KEY=`python -c "import os; print os.urandom(24)"`
+
+popd
