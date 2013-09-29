@@ -2,6 +2,8 @@ import os
 import shutil
 import json
 
+from github3 import GitHubError
+
 from django.conf import settings
 from django.template.defaultfilters import slugify
 
@@ -53,7 +55,11 @@ def exec_cookiecutter(cookie, options, user_id=None, use_github=True):
         repo_path = os.path.join(out, options['repo_name'])
 
         if use_github:
-            repo = utils.create_repository(user_id, options['repo_name'])
+            try:
+                repo = utils.create_repository(user_id, options['repo_name'])
+            except GitHubError:
+                return 'Error'
+
 
             utils.push_directory_to_repo(repo_path, repo)
 
