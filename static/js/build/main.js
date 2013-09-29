@@ -11,6 +11,8 @@
       this.BreadCrumbProgress = this.BreadCrumbEl.find('.progress');
       this.GeneratorId = void 0;
       this.Questions = void 0;
+      this.Baking_url = void 0;
+      this.Checking_url = void 0;
       this.StepsEl = $('#steps > li');
       this.init();
     }
@@ -40,21 +42,47 @@
       choise = _.where(window.generators, {
         id: this.GeneratorId
       });
+      if (!choise[0]) {
+        return;
+      }
+      this.Baking_url = choise[0].baking_url;
       this.Questions = choise[0].options;
-      this.stepNumber = _(this.Questions).size();
+      this.stepNumber = _(this.Questions).size() + 2;
       this.initSteps();
       return this.initBreadCrumb();
-      /*
-      		$.ajax
-      			url: 'http://127.0.0.1:8000/luruke/simple/bake/'
-      			dataType: 'json'
-      			type: 'POST'
-      			beforeSend: (req) ->
-      				req.setRequestHeader("X-CSRFToken", window.csrftoken);
-      			success: (json) ->
-      				console.log(json)
-      */
+    };
 
+    fRoll.prototype.generateProject = function() {
+      var _this = this;
+      return $.ajax({
+        url: this.Baking_url,
+        dataType: 'json',
+        type: 'POST',
+        data: this.Questions,
+        beforeSend: function(req) {
+          req.setRequestHeader("X-CSRFToken", window.csrftoken);
+          return console.log('loading');
+        },
+        success: function(json) {
+          _this.Checking_url = json.url;
+          return window.check_project = window.setInterval($.proxy(_this.checkProject, _this), 4000);
+        }
+      });
+    };
+
+    fRoll.prototype.checkProject = function() {
+      var _this = this;
+      return $.ajax({
+        url: this.Checking_url,
+        dataType: 'json',
+        type: 'GET',
+        beforeSend: function(req) {
+          return req.setRequestHeader("X-CSRFToken", window.csrftoken);
+        },
+        success: function(json) {
+          return console.log(json);
+        }
+      });
     };
 
     fRoll.prototype.initSteps = function() {
@@ -62,9 +90,8 @@
       _ref = this.Questions;
       for (key in _ref) {
         val = _ref[key];
-        template = "				<li>					<input id='" + key + "' placeholder='" + val + "'></input>					<a class='next'>						<span>							Next						</span>					</a>				</li>			";
-        console.log(template);
-        this.StepsEl.parent().append(template);
+        template = "				<li>					<h1>" + (_(key).humanize()) + "</h1>					<input type='text' id='" + key + "' value='" + val + "'></input>					<a class='next'>						<span>							Next						</span>					</a>				</li>			";
+        this.StepsEl.filter('#intro').after(template);
       }
       return this.StepsEl = $('#steps > li');
     };
@@ -127,6 +154,7 @@
       in_effect = newStep > this.currentStep ? 'moveFromRightFade' : 'moveFromLeftFade';
       this.getStep(this.currentStep).addClass(out_effect).on('webkitAnimationEnd', function() {
         $(this).off('webkitAnimationEnd');
+        $(this).hide();
         $(this).removeClass("" + out_effect + " current");
         return self.isAnimating = false;
       });
@@ -136,7 +164,10 @@
         return self.isAnimating = false;
       });
       this.getStep(newStep).addClass('current');
-      return this.currentStep = newStep;
+      this.currentStep = newStep;
+      if (this.currentStep === this.stepNumber - 1) {
+        return this.generateProject();
+      }
     };
 
     return fRoll;

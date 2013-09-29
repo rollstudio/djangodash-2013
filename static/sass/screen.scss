@@ -41,14 +41,16 @@ html, body {
 
 .milk_bg {
 	position: absolute;
-	background-image: image-url('bigbg.png');
-	background-size: contain;
+	background-image: image-url('latte.png');
+	background-size: 1000px 112px;
 	background-position-y: 0px;
 	background-repeat: no-repeat;
 	width: 100%;
-	top: 230px;
+	top: 90%;
 	bottom: 0px;
 	background-color: $milk;
+
+	//@include animation(movemilk 10s linear infinite both);
 }
 
 .container {
@@ -155,13 +157,28 @@ html, body {
 		width: 100%;
 		height: 300px;
 		list-style: none;
+		
+		@include perspective(1200px);
+		@include transform-style(preserve-3d);
+
 
 		li {
+			@include perspective(1200px);
+			@include transform-style(preserve-3d);
+			-webkit-backface-visibility: hidden;
+			-webkit-transform: translateZ(0px);
+
 			position: absolute;
 			visibility: hidden;
 			height: 100%;
 			width: 100%;
 			padding: 10%;
+
+			h1 {
+				font-size: 21px;
+				text-align: center;
+				margin-bottom: 10px;
+			}
 
 			&.current {
 				visibility: visible;
