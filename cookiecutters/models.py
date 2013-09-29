@@ -13,7 +13,7 @@ from djorm_expressions.base import SqlExpression
 
 from json_field import JSONField
 
-from cookiecutters import tasks
+from cookiecutters import tasks, forms
 
 
 class Question(object):
@@ -61,6 +61,9 @@ class CookieCutter(models.Model):
     def repo_path(self):
         return os.path.join(settings.COOKIECUTTERS_DIR,
                 self.user.username, self.name)
+
+    def form(self, *args, **kwargs):
+        return forms.CookieCutterForm(self, *args, **kwargs)
 
     @cached_property
     def questions(self):

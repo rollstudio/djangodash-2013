@@ -27,13 +27,21 @@ def update_repo(cookie):
 
 
 @task()
-def exec_cookiecutter(cookie, user_id, options):
+def exec_cookiecutter(cookie, options, user_id=None, use_github=True):
+    # TODO: not fully implemented
     assert 'repo_name' in options
+    if user_id is None:
+        user_id = 'anon'
+        assert use_github is not True
 
     out = os.path.join(settings.COOKIECUTTERS_TMP, "user_{0}".format(user_id))
     try:
         generate_files(cookie.repo_path, {'cookiecutter': options}, out)
-        repo = utils.create_repository(user_id, options['repo_name'])
-        utils.push_directory_to_repo(os.path.join(out, options['repo_name']), repo)
+        if use_github:
+            repo = utils.create_repository(user_id, options['repo_name'])
+            utils.push_directory_to_repo(os.path.join(out, options['repo_name']), repo)
+        else:
+            # make zippone
+            pass
     finally:
         shutil.rmtree(out)
