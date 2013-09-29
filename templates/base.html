@@ -22,6 +22,7 @@
   </head>
 
   <body id="{% block body_id %}default{% endblock body_id %}">
+
   {% block body_start %}
   {% endblock body_start %}
 
@@ -29,19 +30,61 @@
       {% include "breadcrumb.html" %}
 
       <ul id="steps">
-        <li class="current">Select a project</li>
-        <li>Choose a idk</li>
-        <li>nomeadfuihas</li>
-        <li>end!</li>
+        
+        <li id="intro" class="current">
+            
+            <select data-placeholder="Select a generator">
+              <option value="nonloso">nonloso</option>
+              <option value="ruby">ruby</option>
+              <option value="wordpress">wordpress</option>
+              <option value="django">django</option>
+              <option value="html5boilerplate">html5boilerplate</option>
+            </select>
+            
+            <a class="next"></a>
+        </li>
+
+        <li>
+          <select data-placeholder="Select a generator">
+            <option value="nonloso">nonloso</option>
+            <option value="ruby">ruby</option>
+            <option value="wordpress">wordpress</option>
+            <option value="django">django</option>
+            <option value="html5boilerplate">html5boilerplate</option>
+          </select>
+          
+          <a class="next"></a>
+        </li>
+        <li>
+          <select data-placeholder="Select a generator">
+            <option value="nonloso">nonloso</option>
+            <option value="ruby">ruby</option>
+            <option value="wordpress">wordpress</option>
+            <option value="django">django</option>
+            <option value="html5boilerplate">html5boilerplate</option>
+          </select>
+          
+          <a class="next"></a>
+        </li>
+        
+        <li id="end">
+          <select data-placeholder="Select a generator">
+            <option value="nonloso">nonloso</option>
+            <option value="ruby">ruby</option>
+            <option value="wordpress">wordpress</option>
+            <option value="django">django</option>
+            <option value="html5boilerplate">html5boilerplate</option>
+          </select>
+          
+          <a class="next"></a>
+        </li>
       </ul>
     
 
     </div><!-- /.container -->
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/vendor/jquery.js' %}"></script>
+    <script src="{% static 'js/vendor/chosen.jquery.min.js' %}"></script>
     <script src="{% static 'js/build/main.js' %}"></script>
 
     {% block body_end %}

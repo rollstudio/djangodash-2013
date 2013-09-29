@@ -8,8 +8,14 @@
       this.stepNumber = 4;
       this.isAnimating = false;
       this.BreadCrumbEl = $('#breadcrumb');
+      this.BreadCrumbProgress = this.BreadCrumbEl.find('.progress');
       this.StepsEl = $('#steps > li');
+      this.init();
     }
+
+    fRoll.prototype.init = function() {
+      return this.StepsEl.filter('#intro').find('select').select2();
+    };
 
     fRoll.prototype.initBreadCrumb = function() {
       var b_width, bullet, i, _i, _ref, _results;
@@ -20,11 +26,23 @@
           left: "" + (100 * i / (this.stepNumber - 1)) + "%"
         });
         if (i === 0) {
-          bullet.addClass('current');
+          bullet.addClass('done current');
         }
         _results.push(bullet.appendTo(this.BreadCrumbEl));
       }
       return _results;
+    };
+
+    fRoll.prototype.progressBreadCrumb = function(step_number) {
+      var bullet_step;
+      bullet_step = this.BreadCrumbEl.find('span').eq(step_number);
+      this.BreadCrumbEl.find('span').removeClass('current');
+      bullet_step.addClass('current');
+      return this.BreadCrumbProgress.animate({
+        width: bullet_step[0].style.left
+      }, 500, function() {
+        return bullet_step.addClass('done');
+      });
     };
 
     fRoll.prototype.goNext = function() {
@@ -40,8 +58,12 @@
       if (this.isAnimating) {
         return false;
       }
+      if (newStep > this.stepNumber - 1) {
+        return false;
+      }
       self = this;
       this.isAnimating = true;
+      this.progressBreadCrumb(newStep);
       out_effect = newStep > this.currentStep ? 'moveToLeftFade' : 'moveToRightFade';
       in_effect = newStep > this.currentStep ? 'moveFromRightFade' : 'moveFromLeftFade';
       this.getStep(this.currentStep).addClass(out_effect).on('webkitAnimationEnd', function() {
@@ -66,7 +88,7 @@
 
   roll.initBreadCrumb();
 
-  $('#steps').on('click', function() {
+  $('a.next').on('click', function() {
     return roll.goNext();
   });
 
