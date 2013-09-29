@@ -11,7 +11,6 @@ class GithubCallbackView(TemplateView):
 
 
 urlpatterns = patterns('',
-    # Examples:
     url(r'^accounts/', include('allauth.urls')),
     url(r'^admin/', include(admin.site.urls)),
 
