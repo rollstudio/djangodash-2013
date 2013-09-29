@@ -138,6 +138,7 @@ TEMPLATE_DIRS = (
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = DEFAULT_SETTINGS.TEMPLATE_CONTEXT_PROCESSORS + (
+    'django.core.context_processors.request',
     "allauth.account.context_processors.account",
     "allauth.socialaccount.context_processors.socialaccount",
 )
@@ -225,7 +226,5 @@ REST_FRAMEWORK = {
 AWS_BUCKET = get_env_setting('AWS_BUCKET', 'bakehouse')
 AWS_ACCESS_KEY_ID = get_env_setting('AWS_ACCESS_KEY_ID', '')
 AWS_SECRET_ACCESS_KEY = get_env_setting('AWS_SECRET_ACCESS_KEY', '')
-
-LOGIN_REDIRECT_URL = reverse_lazy('github_callback')
 
 BROKER_URL = 'amqp://guest:guest@localhost:5672/'

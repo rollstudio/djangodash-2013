@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
+{% load socialaccount %}
+
 {% block body_id %}home{% endblock body_id %}
 
 {% block content %}
@@ -67,7 +69,7 @@
     window.Bakehouse = {
         cookiesURL: '{% url 'cookie_list' %}',
         cookies: {{ cookies|safe }},
-        github_logiN: '{% url 'github_login' %}'
+        github_login: '{% provider_login_url "github" next='/github/callback/' %}'
     };
 </script>
 

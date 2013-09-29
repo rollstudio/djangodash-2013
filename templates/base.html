@@ -1,4 +1,6 @@
 {% load staticfiles %}
+{% load socialaccount %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -33,27 +35,27 @@
           <h1>FROLLINO</h1>
           <h2>DIP INTO YOUR  PROJECT</h2>
         </div>
-        
+
         {% include "breadcrumb.html" %}
       </header>
 
-      
+
 
       <ul id="steps">
-        
+
         <li id="intro" class="current">
             <input id="select_generator" type="text" placeholder="Select a Generator" />
             <a class="start"><span>START</span></a>
         </li>
 
-        
+
         <li id="end">
-            
+
             <div class="loading_container">
               <span class="loading"></span>
               <h1>the milk is heating up...</h1>
             </div>
-            
+
             <div class="download_link">
               <div class="download_container">
                   <div class="github"></div>
@@ -64,14 +66,15 @@
 
         </li>
       </ul>
-    
+
 
     </div><!-- /.container -->
-  
+
     <script>
         window.Bakehouse = {
             cookiesURL: '{% url 'cookie_list' %}',
-            cookies: {{ cookies|safe }}
+            cookies: {{ cookies|safe }},
+            github_login: '{% provider_login_url "github" next='/github/callback/' %}'
         };
     </script>
 

@@ -14,6 +14,6 @@ urlpatterns = patterns('',
     url(r'^accounts/', include('allauth.urls')),
     url(r'^admin/', include(admin.site.urls)),
 
-    url(r'^github/callback/$', GithubCallbackView.as_view(), name='github_callback'),
+    url(r'^github/callback/$', GithubCallbackView.as_view(), name='custom_github_callback'),
     url(r'^', include('cookiecutters.urls')),
 )
