@@ -9,6 +9,9 @@
 $grey: #bdc3c7;
 $green: rgb(0, 189, 156);
 $brown: #cc9861;
+$red: rgb(195, 79, 79);
+$blue: #33495F;
+$milk: rgb(240, 240, 224);
 
 @import 'mixin';
 @import 'keyframes';
@@ -23,17 +26,54 @@ html, body {
 	overflow-x: hidden;
 	font-family: 'Gill Sans Light';
 	color: $brown;
+	background-color: $blue;
+	height: 100%;
+}
+
+/*body {
+	background-image: image-url('bigbg.png');
+	background-size: contain;
+	background-position: center bottom;
+	min-height: 100%;
+	background-position-y: 220px;
+	background-repeat: no-repeat;
+}*/
+
+.milk_bg {
+	position: absolute;
+	background-image: image-url('bigbg.png');
+	background-size: contain;
+	background-position-y: 0px;
+	background-repeat: no-repeat;
+	width: 100%;
+	top: 30%;
+	bottom: 0px;
+	&:after {
+		position: absolute;
+		content: '';
+		width: 100%;
+		bottom: 0px;
+		background-color: $milk;
+	}
 }
 
 .container {
 	width: 100%;
 	max-width: 700px;
-	min-width: 360px;
+	min-width: 320px;
 	margin: 0px auto;
-	margin-top: 60px;
 
 
 	header {
+		width: 100%;
+		max-width: 400px;
+		text-align: center;
+		margin: 0px auto;
+		height: 260px;
+		padding: 20px;
+		padding-top: 50px;
+		max-width: 470px;
+
 		text-align: center;
 		#logo {
 			@include bg_img('logo.png');
@@ -41,25 +81,30 @@ html, body {
 				background-size: 100%;
 				background-image: image-url('logox2.png');
 			}
-			margin: 0px auto;
+			float:left;
 
 		}
-		h1 {
-			margin-top: 30px;
-			font-size: 42px;
-		}
-		h2 {
-			font-size: 22px;
+		.right {
+			float: right;
+			h1 {
+				margin-top: 50px;
+				font-size: 42px;
+			}
+			h2 {
+				font-size: 22px;
+			}
 		}
 	}
 
 	#breadcrumb {
+		display: none;
 		position: relative;
-		width: 40%;
+		width: 60%;
 		height: 2px;
 		margin: 0px auto;
 		margin-top: 30px;
 		background-color: $grey;
+		top: 180px;
 	
 		.progress {
 			position: absolute;
@@ -105,7 +150,6 @@ html, body {
 	}
 
 	#steps {
-		margin-top: 20px;
 		position: relative;
 		width: 100%;
 		height: 300px;
@@ -116,13 +160,13 @@ html, body {
 			visibility: hidden;
 			height: 100%;
 			width: 100%;
-			padding: 40px;
+			padding: 10%;
 
 			&.current {
 				visibility: visible;
 			}
 
-			a.next {
+			a {
 				display: block;
 				width: 30%;
 				height: 50px;
@@ -132,8 +176,18 @@ html, body {
 				margin-top: 50px;
 
 				background-color: $brown;
-				@include transition(0.25s);
+				@include transition(0.4s);
 				@include border-radius(3px);
+
+
+				color: #fff;
+				text-align: center;
+				line-height: 50px;
+				font-size: 17px;
+				letter-spacing: 6px;
+				span {
+					margin-left: 7px;
+				}
 
 				&:hover {
 					background-color: #cca470;
@@ -146,6 +200,8 @@ html, body {
 
 
 input[type='text'] {
+	outline: none;
+	padding: 8px;
 	max-width: 700px;
 	width: 100%;
 	height: 60px;
@@ -154,6 +210,11 @@ input[type='text'] {
 	border: 2px solid $grey;
 
 	@include transition (border .25s linear, color .25s linear, background-color .25s linear);
+
+
+	&.error {
+		border-color: $red;
+	}
 }
 
 
@@ -168,4 +229,71 @@ input[type='text'] {
 }
 .moveFromLeftFade {
 	@include animation(moveFromLeftFade .7s ease both)
+}
+
+
+.twitter-typeahead {
+	width: 100%;
+}
+
+.typeahead,
+.tt-hint {
+  width: 574px;
+  height: 30px;
+  padding: 8px 12px;
+  font-size: 24px;
+  line-height: 30px;
+  border: 1px solid #024e6a;
+  -webkit-border-radius: 8px;
+     -moz-border-radius: 8px;
+          border-radius: 8px;
+  outline: none;
+}
+
+.typeahead {
+  background-color: #fff;
+}
+
+.tt-hint {
+  color: #999
+}
+
+.tt-dropdown-menu {
+  width: 100%;
+  margin-top: -5px;
+  background-color: #fff;
+
+  @include border-radius(4px);
+  border: 2px solid $grey;
+  border-top: 0px;
+
+}
+
+.tt-suggestion {
+  padding: 8px 20px;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.tt-suggestion + .tt-suggestion {
+  font-size: 14px;
+  border-top: 1px solid #ccc;
+}
+
+.tt-suggestions .repo-language {
+  float: right;
+  font-style: italic;
+}
+
+.tt-suggestions .repo-name {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.tt-suggestions .repo-description {
+  margin: 0;
+}
+
+.twitter-typeahead .tt-suggestion.tt-is-under-cursor {
+  color: #03739c;
 }
