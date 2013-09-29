@@ -2,16 +2,12 @@ import os
 import shutil
 import json
 
+from celery import task
 from gittle import Gittle
-
 from django.conf import settings
-
 from cookiecutter.generate import generate_files
 
 from baker import utils
-
-from celery import task
-from celery import current_task
 
 
 @task()
@@ -26,6 +22,7 @@ def update_repo(cookie):
     cookie.options = {'repo_name': 'your repo'}
 
     options_file = os.path.join(cookie.repo_path, 'cookiecutter.json')
+
     if os.path.isfile(options_file):
         cookie.options.update(json.load(open(options_file)))
 
@@ -42,20 +39,25 @@ def exec_cookiecutter(cookie, options, user_id=None, use_github=True):
 
     out = os.path.join(settings.COOKIECUTTERS_TMP, "user_{0}".format(user_id))
 
+    result = None
+
     try:
         os.makedirs(out)
 
-        print out
-
         generate_files(cookie.repo_path, {'cookiecutter': options}, out)
+
+        repo_path = os.path.join(out, options['repo_name'])
 
         if use_github:
             repo = utils.create_repository(user_id, options['repo_name'])
 
-            utils.push_directory_to_repo(os.path.join(out, options['repo_name']), repo)
+            utils.push_directory_to_repo(repo_path, repo)
+
+            result = repo.html_url
         else:
-            # make zippone
-            pass
+            result = utils.make_zip(repo_path)
     finally:
         if os.path.exists(out):
             shutil.rmtree(out)
+
+    return result

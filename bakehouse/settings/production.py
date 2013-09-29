@@ -36,6 +36,8 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 AWS_ACCESS_KEY_ID = get_env_setting('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = get_env_setting('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = 'static.tyrion.mx'
+AWS_BUCKET = get_env_setting('AWS_BUCKET', 'bakehouse_prod')
+
 AWS_QUERYSTRING_AUTH = False
 AWS_S3_SECURE_URLS = False
 AWS_S3_CUSTOM_DOMAIN = AWS_STORAGE_BUCKET_NAME
