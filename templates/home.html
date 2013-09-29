@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load static %}
+{% block body_id %}home{% endblock body_id %}
+
+{% block content %}
+<div class="container">
+  <header>
+    <div id="logo"></div>
+    <h1>FROLLINO</h1>
+    <h2>DIP INTO YOUR  PROJECT</h2>
+  </header>
+
+  {% include "breadcrumb.html" %}
+
+  <ul id="steps">
+
+    <li id="intro" class="current">
+
+        <select data-placeholder="Select a generator">
+          <option value="nonloso">nonloso</option>
+          <option value="ruby">ruby</option>
+          <option value="wordpress">wordpress</option>
+          <option value="django">django</option>
+          <option value="html5boilerplate">html5boilerplate</option>
+        </select>
+
+        <a class="next"></a>
+    </li>
+
+    <li>
+      <input type="text" placeholder="Insert a name..." />
+
+      <a class="next"></a>
+    </li>
+    <li>
+      <select data-placeholder="Select a generator">
+        <option value="nonloso">nonloso</option>
+        <option value="ruby">ruby</option>
+        <option value="wordpress">wordpress</option>
+        <option value="django">django</option>
+        <option value="html5boilerplate">html5boilerplate</option>
+      </select>
+
+      <a class="next"></a>
+    </li>
+
+    <li id="end">
+      <select data-placeholder="Select a generator">
+        <option value="nonloso">nonloso</option>
+        <option value="ruby">ruby</option>
+        <option value="wordpress">wordpress</option>
+        <option value="django">django</option>
+        <option value="html5boilerplate">html5boilerplate</option>
+      </select>
+
+      <a class="next"></a>
+    </li>
+  </ul>
+
+
+</div><!-- /.container -->
+
+{% endblock content %}
+
+{% block body_end %}
+<script>
+    window.Bakehouse = {
+        cookiesURL: '{% url 'cookie_list' %}'
+    };
+</script>
+
+<script src="{% static 'js/vendor/jquery.js' %}"></script>
+<script src="{% static 'js/vendor/chosen.jquery.min.js' %}"></script>
+<script src="{% static 'js/build/main.js' %}"></script>
+
+{% endblock body_end %}
