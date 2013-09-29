@@ -113,7 +113,7 @@
         return _this.generateProject('zip');
       });
       return $(".github").on('click', function() {
-        window.github_pop = window.open('accounts/github/login/', 'Github', 'width=800, height=600');
+        window.github_pop = window.open(window.Bakehouse.github_login, 'Github', 'width=800, height=600');
         return window.github_pop.focus();
       });
     };

@@ -108,7 +108,8 @@ class fRoll
 			#window.open @ZipUrl
 
 		$(".github").on 'click', =>
-			window.github_pop = window.open 'accounts/github/login/', 'Github', 'width=800, height=600'
+			#window.github_pop = window.open 'accounts/github/login/', 'Github', 'width=800, height=600'
+			window.github_pop = window.open window.Bakehouse.github_login, 'Github', 'width=800, height=600'
 			window.github_pop.focus()
 
 	initSteps: ->
@@ -204,6 +205,7 @@ roll = new fRoll
 
 window.generateGithub = ->
 	roll.generateProject('github')
+
 
 #roll.stepNumber = 10
 #roll.initBreadCrumb()
