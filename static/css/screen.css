@@ -1010,6 +1010,11 @@ disabled look for disabled choices in the results dropdown
 }
 
 /* line 20, ../sass/screen.scss */
+html, body {
+  overflow: hidden;
+}
+
+/* line 24, ../sass/screen.scss */
 .container {
   width: 100%;
   max-width: 700px;
@@ -1017,7 +1022,7 @@ disabled look for disabled choices in the results dropdown
   margin: 0px auto;
   margin-top: 200px;
 }
-/* line 27, ../sass/screen.scss */
+/* line 31, ../sass/screen.scss */
 .container #breadcrumb {
   position: relative;
   width: 40%;
@@ -1025,7 +1030,7 @@ disabled look for disabled choices in the results dropdown
   margin: 0px auto;
   background-color: #bdc3c7;
 }
-/* line 34, ../sass/screen.scss */
+/* line 38, ../sass/screen.scss */
 .container #breadcrumb .progress {
   position: absolute;
   left: 0px;
@@ -1034,7 +1039,7 @@ disabled look for disabled choices in the results dropdown
   width: 0px;
   background-color: #00bd9c;
 }
-/* line 43, ../sass/screen.scss */
+/* line 47, ../sass/screen.scss */
 .container #breadcrumb span {
   display: block;
   position: absolute;
@@ -1055,11 +1060,11 @@ disabled look for disabled choices in the results dropdown
   -o-border-radius: 50%;
   border-radius: 50%;
 }
-/* line 66, ../sass/screen.scss */
+/* line 70, ../sass/screen.scss */
 .container #breadcrumb span.done {
   background-position: -100%;
 }
-/* line 69, ../sass/screen.scss */
+/* line 73, ../sass/screen.scss */
 .container #breadcrumb span.current {
   -webkit-transform: scale(2);
   -moz-transform: scale(2);
@@ -1067,16 +1072,15 @@ disabled look for disabled choices in the results dropdown
   -o-transform: scale(2);
   transform: scale(2);
 }
-/* line 77, ../sass/screen.scss */
+/* line 81, ../sass/screen.scss */
 .container #steps {
   margin-top: 20px;
   position: relative;
   width: 100%;
   height: 300px;
   list-style: none;
-  overflow: hidden;
 }
-/* line 85, ../sass/screen.scss */
+/* line 88, ../sass/screen.scss */
 .container #steps li {
   position: absolute;
   visibility: hidden;
@@ -1084,11 +1088,11 @@ disabled look for disabled choices in the results dropdown
   width: 100%;
   padding: 40px;
 }
-/* line 92, ../sass/screen.scss */
+/* line 95, ../sass/screen.scss */
 .container #steps li.current {
   visibility: visible;
 }
-/* line 96, ../sass/screen.scss */
+/* line 99, ../sass/screen.scss */
 .container #steps li a.next {
   display: block;
   width: 30%;
@@ -1107,12 +1111,12 @@ disabled look for disabled choices in the results dropdown
   -o-border-radius: 3px;
   border-radius: 3px;
 }
-/* line 109, ../sass/screen.scss */
+/* line 112, ../sass/screen.scss */
 .container #steps li a.next:hover {
   background-color: #48c9b0;
 }
 
-/* line 119, ../sass/screen.scss */
+/* line 122, ../sass/screen.scss */
 .moveToLeftFade {
   -webkit-animation: moveToLeftFade 0.7s ease both;
   -moz-animation: moveToLeftFade 0.7s ease both;
@@ -1121,7 +1125,7 @@ disabled look for disabled choices in the results dropdown
   animation: moveToLeftFade 0.7s ease both;
 }
 
-/* line 122, ../sass/screen.scss */
+/* line 125, ../sass/screen.scss */
 .moveFromRightFade {
   -webkit-animation: moveFromRightFade 0.7s ease both;
   -moz-animation: moveFromRightFade 0.7s ease both;
@@ -1130,7 +1134,7 @@ disabled look for disabled choices in the results dropdown
   animation: moveFromRightFade 0.7s ease both;
 }
 
-/* line 125, ../sass/screen.scss */
+/* line 128, ../sass/screen.scss */
 .moveToRightFade {
   -webkit-animation: moveToRightFade 0.7s ease both;
   -moz-animation: moveToRightFade 0.7s ease both;
@@ -1139,7 +1143,7 @@ disabled look for disabled choices in the results dropdown
   animation: moveToRightFade 0.7s ease both;
 }
 
-/* line 128, ../sass/screen.scss */
+/* line 131, ../sass/screen.scss */
 .moveFromLeftFade {
   -webkit-animation: moveFromLeftFade 0.7s ease both;
   -moz-animation: moveFromLeftFade 0.7s ease both;
