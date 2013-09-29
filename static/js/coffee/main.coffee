@@ -1,7 +1,7 @@
 class fRoll
 	constructor: ->
 		@currentStep = 0
-		@stepNumber = 4
+		@stepNumber = 0
 		@isAnimating = false
 
 		@BreadCrumbEl = $('#breadcrumb')
@@ -12,7 +12,33 @@ class fRoll
 		@init()
 
 	init: ->
-		@StepsEl.filter('#intro').find('select').select2()
+		input = @StepsEl.filter('#intro').find('input')
+
+		input.typeahead
+			name: 'asda'
+			minLength: 0
+			local: window.generators
+			template: [                                                                 
+			   '<p class="repo-language">{{language}}</p>',                              
+			   '<p class="repo-name">{{options.project_name}}</p>',                                      
+			   '<p class="repo-description">{{description}}</p>'                         
+			 ].join('')                                                                 
+			 engine: Hogan
+			#local: window.generators
+
+
+		##input.on 'focus', input.typeahead.bind(input, 'lookup')
+
+		#$("#typeaheadField").on('focus', $("#typeaheadField").typeahead.bind($("#typeaheadField"), 'lookup') );
+
+	loadGenerator: (id_generator) ->
+		#ajax request ?jsonp
+		@BreadCrumbEl.fadeIn()
+		@stepNumber = 4
+		@initBreadCrumb()
+		@goNext()
+
+
 
 	initBreadCrumb: ->
 		b_width = @BreadCrumbEl.width()
@@ -32,9 +58,16 @@ class fRoll
 			bullet_step.addClass 'done'
 			
 
-
 	goNext: ->
+		input = @getStep( @currentStep ).find('input')
+
+		if !input.val() & @currentStep > 0
+			input.addClass 'error'
+			return;
+
+		input.removeClass 'error'
 		@jumpTo( @currentStep + 1 )
+
 
 	getStep: (n) ->
 		@StepsEl.eq n
@@ -51,14 +84,14 @@ class fRoll
 		in_effect = if newStep > @currentStep then 'moveFromRightFade' else 'moveFromLeftFade'
 
 		@getStep(@currentStep).addClass(out_effect).on('webkitAnimationEnd', ->
-			$(@).off 'animationEnd'
+			$(@).off 'webkitAnimationEnd'
 			$(@).removeClass "#{out_effect} current"
 
 			self.isAnimating = false
 		)
 
 		@getStep( newStep ).addClass(in_effect).on('webkitAnimationEnd', ->
-			$(@).off 'animationEnd'
+			$(@).off 'webkitAnimationEnd'
 			$(@).removeClass in_effect
 
 			self.isAnimating = false
@@ -69,9 +102,14 @@ class fRoll
 
 
 roll = new fRoll
-roll.initBreadCrumb()
+
+#roll.stepNumber = 10
+#roll.initBreadCrumb()
 
 
 $('a.next').on 'click', ->
 	roll.goNext()
 
+
+$('a.start').on 'click', ->
+	roll.loadGenerator 5

@@ -22,6 +22,7 @@
   </head>
 
   <body id="{% block body_id %}default{% endblock body_id %}">
+  <div class="milk_bg"></div>
 
   {% block body_start %}
   {% endblock body_start %}
@@ -29,28 +30,26 @@
     <div class="container">
       <header>
         <div id="logo"></div>
-        <h1>FROLLINO</h1>
-        <h2>DIP INTO YOUR  PROJECT</h2>
+        <div class="right">
+          <h1>FROLLINO</h1>
+          <h2>DIP INTO YOUR  PROJECT</h2>
+        </div>
+        
+        {% include "breadcrumb.html" %}
       </header>
 
-      {% include "breadcrumb.html" %}
+      
 
       <ul id="steps">
         
         <li id="intro" class="current">
             
-            <select data-placeholder="Select a generator">
-              <option value="nonloso">nonloso</option>
-              <option value="ruby">ruby</option>
-              <option value="wordpress">wordpress</option>
-              <option value="django">django</option>
-              <option value="html5boilerplate">html5boilerplate</option>
-            </select>
+            <input id="select_generator" type="text" placeholder="Select a Generator" />
             
-            <a class="next"></a>
+            <a class="start"><span>START</span></a>
         </li>
 
-        <li>
+        <!--<li>
           <input type="text" placeholder="Insert a name..." />
           
           <a class="next"></a>
@@ -65,26 +64,60 @@
           </select>
           
           <a class="next"></a>
-        </li>
+        </li> -->
         
         <li id="end">
-          <select data-placeholder="Select a generator">
-            <option value="nonloso">nonloso</option>
-            <option value="ruby">ruby</option>
-            <option value="wordpress">wordpress</option>
-            <option value="django">django</option>
-            <option value="html5boilerplate">html5boilerplate</option>
-          </select>
-          
-          <a class="next"></a>
+          ajdioajisdo
         </li>
       </ul>
     
 
     </div><!-- /.container -->
-
+  
+    <script>
+    window.generators = [
+        {
+            "value": "Python Boilerplate",
+            "id": 21, 
+            "name": "pypackage", 
+            "description": "Cookiecutter template for a Python package. See https://github.com/audreyr/cookiecutter.", 
+            "url": "https://github.com/audreyr/cookiecutter-pypackage.git", 
+            "options": {
+                "project_name": "Python Boilerplate", 
+                "project_short_description": "Python Boilerplate contains all the boilerplate you need to create a Python package.", 
+                "year": "2013", 
+                "release_date": "2013-08-11", 
+                "version": "0.1.0", 
+                "full_name": "Audrey Roy", 
+                "github_username": "audreyr", 
+                "email": "audreyr@gmail.com", 
+                "repo_name": "boilerplate"
+            }, 
+            "language": "en", 
+            "tags": []
+        }, 
+        {
+            "value": 'my flask app',
+            "id": 22, 
+            "name": "flask", 
+            "description": "A flask template with Twitter Bootstrap 3, asset bundling+minification, starter templates, and basic registration/authentication. For use with cookiecutter", 
+            "url": "https://github.com/sloria/cookiecutter-flask.git", 
+            "options": {
+                "project_name": "My Flask App", 
+                "project_short_description": "A flasky app.", 
+                "github_username": "sloria", 
+                "full_name": "Steven Loria", 
+                "year": "2013", 
+                "email": "sloria1@gmail.com", 
+                "repo_name": "myflaskapp"
+            }, 
+            "language": "en", 
+            "tags": []
+        }
+    ];
+    </script>
     <script src="{% static 'js/vendor/jquery.js' %}"></script>
-    <script src="{% static 'js/vendor/chosen.jquery.min.js' %}"></script>
+    <script src="{% static 'js/vendor/typeahead.min.js' %}"></script>
     <script src="{% static 'js/build/main.js' %}"></script>
 
     {% block body_end %}

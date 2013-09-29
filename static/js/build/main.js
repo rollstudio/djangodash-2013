@@ -5,7 +5,7 @@
   fRoll = (function() {
     function fRoll() {
       this.currentStep = 0;
-      this.stepNumber = 4;
+      this.stepNumber = 0;
       this.isAnimating = false;
       this.BreadCrumbEl = $('#breadcrumb');
       this.BreadCrumbProgress = this.BreadCrumbEl.find('.progress');
@@ -14,7 +14,22 @@
     }
 
     fRoll.prototype.init = function() {
-      return this.StepsEl.filter('#intro').find('select').select2();
+      var input;
+      input = this.StepsEl.filter('#intro').find('input');
+      return input.typeahead({
+        name: 'asda',
+        minLength: 0,
+        local: window.generators,
+        template: ['<p class="repo-language">{{language}}</p>', '<p class="repo-name">{{options.project_name}}</p>', '<p class="repo-description">{{description}}</p>'].join(''),
+        engine: Hogan
+      });
+    };
+
+    fRoll.prototype.loadGenerator = function(id_generator) {
+      this.BreadCrumbEl.fadeIn();
+      this.stepNumber = 4;
+      this.initBreadCrumb();
+      return this.goNext();
     };
 
     fRoll.prototype.initBreadCrumb = function() {
@@ -46,6 +61,13 @@
     };
 
     fRoll.prototype.goNext = function() {
+      var input;
+      input = this.getStep(this.currentStep).find('input');
+      if (!input.val() & this.currentStep > 0) {
+        input.addClass('error');
+        return;
+      }
+      input.removeClass('error');
       return this.jumpTo(this.currentStep + 1);
     };
 
@@ -67,12 +89,12 @@
       out_effect = newStep > this.currentStep ? 'moveToLeftFade' : 'moveToRightFade';
       in_effect = newStep > this.currentStep ? 'moveFromRightFade' : 'moveFromLeftFade';
       this.getStep(this.currentStep).addClass(out_effect).on('webkitAnimationEnd', function() {
-        $(this).off('animationEnd');
+        $(this).off('webkitAnimationEnd');
         $(this).removeClass("" + out_effect + " current");
         return self.isAnimating = false;
       });
       this.getStep(newStep).addClass(in_effect).on('webkitAnimationEnd', function() {
-        $(this).off('animationEnd');
+        $(this).off('webkitAnimationEnd');
         $(this).removeClass(in_effect);
         return self.isAnimating = false;
       });
@@ -86,10 +108,12 @@
 
   roll = new fRoll;
 
-  roll.initBreadCrumb();
-
   $('a.next').on('click', function() {
     return roll.goNext();
+  });
+
+  $('a.start').on('click', function() {
+    return roll.loadGenerator(5);
   });
 
 }).call(this);

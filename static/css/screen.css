@@ -1014,64 +1014,107 @@ disabled look for disabled choices in the results dropdown
   font-weight: 200;
 }
 
-/* line 18, ../sass/screen.scss */
+/* line 21, ../sass/screen.scss */
 * {
   box-sizing: border-box;
 }
 
-/* line 22, ../sass/screen.scss */
+/* line 25, ../sass/screen.scss */
 html, body {
   overflow-x: hidden;
   font-family: 'Gill Sans Light';
   color: #cc9861;
+  background-color: #33495f;
+  height: 100%;
 }
 
-/* line 28, ../sass/screen.scss */
+/*body {
+	background-image: image-url('bigbg.png');
+	background-size: contain;
+	background-position: center bottom;
+	min-height: 100%;
+	background-position-y: 220px;
+	background-repeat: no-repeat;
+}*/
+/* line 42, ../sass/screen.scss */
+.milk_bg {
+  position: absolute;
+  background-image: url('../images/bigbg.png?1380465926');
+  background-size: contain;
+  background-position-y: 0px;
+  background-repeat: no-repeat;
+  width: 100%;
+  top: 30%;
+  bottom: 0px;
+}
+/* line 51, ../sass/screen.scss */
+.milk_bg:after {
+  position: absolute;
+  content: '';
+  width: 100%;
+  bottom: 0px;
+  background-color: #f0f0e0;
+}
+
+/* line 60, ../sass/screen.scss */
 .container {
   width: 100%;
   max-width: 700px;
-  min-width: 360px;
+  min-width: 320px;
   margin: 0px auto;
-  margin-top: 60px;
 }
-/* line 36, ../sass/screen.scss */
+/* line 67, ../sass/screen.scss */
 .container header {
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  margin: 0px auto;
+  height: 260px;
+  padding: 20px;
+  padding-top: 50px;
+  max-width: 470px;
   text-align: center;
 }
-/* line 38, ../sass/screen.scss */
+/* line 78, ../sass/screen.scss */
 .container header #logo {
-  background-image: url('../images/logo.png?1380450529');
+  background-image: url('../images/logo.png?1380466857');
   background-repeat: no-repeat;
-  width: 92px;
-  height: 133px;
-  margin: 0px auto;
+  width: 121px;
+  height: 234px;
+  float: left;
 }
 @media (min--moz-device-pixel-ratio: 1.3), (-o-min-device-pixel-ratio: 2.6 / 2), (-webkit-min-device-pixel-ratio: 1.3), (min-device-pixel-ratio: 1.3), (min-resolution: 1.3dppx) {
-  /* line 38, ../sass/screen.scss */
+  /* line 78, ../sass/screen.scss */
   .container header #logo {
     background-size: 100%;
-    background-image: url('../images/logox2.png?1380450839');
+    background-image: url('../images/logox2.png?1380466824');
   }
 }
-/* line 47, ../sass/screen.scss */
-.container header h1 {
-  margin-top: 30px;
+/* line 87, ../sass/screen.scss */
+.container header .right {
+  float: right;
+}
+/* line 89, ../sass/screen.scss */
+.container header .right h1 {
+  margin-top: 50px;
   font-size: 42px;
 }
-/* line 51, ../sass/screen.scss */
-.container header h2 {
+/* line 93, ../sass/screen.scss */
+.container header .right h2 {
   font-size: 22px;
 }
-/* line 56, ../sass/screen.scss */
+/* line 99, ../sass/screen.scss */
 .container #breadcrumb {
+  display: none;
   position: relative;
-  width: 40%;
+  width: 60%;
   height: 2px;
   margin: 0px auto;
   margin-top: 30px;
   background-color: #bdc3c7;
+  top: 180px;
 }
-/* line 64, ../sass/screen.scss */
+/* line 109, ../sass/screen.scss */
 .container #breadcrumb .progress {
   position: absolute;
   left: 0px;
@@ -1080,7 +1123,7 @@ html, body {
   width: 0px;
   background-color: #cc9861;
 }
-/* line 73, ../sass/screen.scss */
+/* line 118, ../sass/screen.scss */
 .container #breadcrumb span {
   display: block;
   position: absolute;
@@ -1101,11 +1144,11 @@ html, body {
   -o-border-radius: 50%;
   border-radius: 50%;
 }
-/* line 96, ../sass/screen.scss */
+/* line 141, ../sass/screen.scss */
 .container #breadcrumb span.done {
   background-position: -100%;
 }
-/* line 99, ../sass/screen.scss */
+/* line 144, ../sass/screen.scss */
 .container #breadcrumb span.current {
   -webkit-transform: scale(2);
   -moz-transform: scale(2);
@@ -1113,28 +1156,27 @@ html, body {
   -o-transform: scale(2);
   transform: scale(2);
 }
-/* line 107, ../sass/screen.scss */
+/* line 152, ../sass/screen.scss */
 .container #steps {
-  margin-top: 20px;
   position: relative;
   width: 100%;
   height: 300px;
   list-style: none;
 }
-/* line 114, ../sass/screen.scss */
+/* line 158, ../sass/screen.scss */
 .container #steps li {
   position: absolute;
   visibility: hidden;
   height: 100%;
   width: 100%;
-  padding: 40px;
+  padding: 10%;
 }
-/* line 121, ../sass/screen.scss */
+/* line 165, ../sass/screen.scss */
 .container #steps li.current {
   visibility: visible;
 }
-/* line 125, ../sass/screen.scss */
-.container #steps li a.next {
+/* line 169, ../sass/screen.scss */
+.container #steps li a {
   display: block;
   width: 30%;
   height: 50px;
@@ -1142,23 +1184,34 @@ html, body {
   margin: 0px auto;
   margin-top: 50px;
   background-color: #cc9861;
-  -webkit-transition: 0.25s;
-  -moz-transition: 0.25s;
-  -o-transition: 0.25s;
-  transition: 0.25s;
+  -webkit-transition: 0.4s;
+  -moz-transition: 0.4s;
+  -o-transition: 0.4s;
+  transition: 0.4s;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   -ms-border-radius: 3px;
   -o-border-radius: 3px;
   border-radius: 3px;
+  color: #fff;
+  text-align: center;
+  line-height: 50px;
+  font-size: 17px;
+  letter-spacing: 6px;
 }
-/* line 138, ../sass/screen.scss */
-.container #steps li a.next:hover {
+/* line 188, ../sass/screen.scss */
+.container #steps li a span {
+  margin-left: 7px;
+}
+/* line 192, ../sass/screen.scss */
+.container #steps li a:hover {
   background-color: #cca470;
 }
 
-/* line 148, ../sass/screen.scss */
+/* line 202, ../sass/screen.scss */
 input[type='text'] {
+  outline: none;
+  padding: 8px;
   max-width: 700px;
   width: 100%;
   height: 60px;
@@ -1174,8 +1227,12 @@ input[type='text'] {
   -o-transition: border 0.25s linear, color 0.25s linear, background-color 0.25s linear;
   transition: border 0.25s linear, color 0.25s linear, background-color 0.25s linear;
 }
+/* line 215, ../sass/screen.scss */
+input[type='text'].error {
+  border-color: #c34f4f;
+}
 
-/* line 160, ../sass/screen.scss */
+/* line 221, ../sass/screen.scss */
 .moveToLeftFade {
   -webkit-animation: moveToLeftFade 0.7s ease both;
   -moz-animation: moveToLeftFade 0.7s ease both;
@@ -1184,7 +1241,7 @@ input[type='text'] {
   animation: moveToLeftFade 0.7s ease both;
 }
 
-/* line 163, ../sass/screen.scss */
+/* line 224, ../sass/screen.scss */
 .moveFromRightFade {
   -webkit-animation: moveFromRightFade 0.7s ease both;
   -moz-animation: moveFromRightFade 0.7s ease both;
@@ -1193,7 +1250,7 @@ input[type='text'] {
   animation: moveFromRightFade 0.7s ease both;
 }
 
-/* line 166, ../sass/screen.scss */
+/* line 227, ../sass/screen.scss */
 .moveToRightFade {
   -webkit-animation: moveToRightFade 0.7s ease both;
   -moz-animation: moveToRightFade 0.7s ease both;
@@ -1202,11 +1259,90 @@ input[type='text'] {
   animation: moveToRightFade 0.7s ease both;
 }
 
-/* line 169, ../sass/screen.scss */
+/* line 230, ../sass/screen.scss */
 .moveFromLeftFade {
   -webkit-animation: moveFromLeftFade 0.7s ease both;
   -moz-animation: moveFromLeftFade 0.7s ease both;
   -o-animation: moveFromLeftFade 0.7s ease both;
   -ms-animation: moveFromLeftFade 0.7s ease both;
   animation: moveFromLeftFade 0.7s ease both;
+}
+
+/* line 235, ../sass/screen.scss */
+.twitter-typeahead {
+  width: 100%;
+}
+
+/* line 240, ../sass/screen.scss */
+.typeahead,
+.tt-hint {
+  width: 574px;
+  height: 30px;
+  padding: 8px 12px;
+  font-size: 24px;
+  line-height: 30px;
+  border: 1px solid #024e6a;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  outline: none;
+}
+
+/* line 253, ../sass/screen.scss */
+.typeahead {
+  background-color: #fff;
+}
+
+/* line 257, ../sass/screen.scss */
+.tt-hint {
+  color: #999999;
+}
+
+/* line 261, ../sass/screen.scss */
+.tt-dropdown-menu {
+  width: 100%;
+  margin-top: -5px;
+  background-color: #fff;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  border: 2px solid #bdc3c7;
+  border-top: 0px;
+}
+
+/* line 272, ../sass/screen.scss */
+.tt-suggestion {
+  padding: 8px 20px;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+/* line 278, ../sass/screen.scss */
+.tt-suggestion + .tt-suggestion {
+  font-size: 14px;
+  border-top: 1px solid #ccc;
+}
+
+/* line 283, ../sass/screen.scss */
+.tt-suggestions .repo-language {
+  float: right;
+  font-style: italic;
+}
+
+/* line 288, ../sass/screen.scss */
+.tt-suggestions .repo-name {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* line 293, ../sass/screen.scss */
+.tt-suggestions .repo-description {
+  margin: 0;
+}
+
+/* line 297, ../sass/screen.scss */
+.twitter-typeahead .tt-suggestion.tt-is-under-cursor {
+  color: #03739c;
 }
