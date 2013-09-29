@@ -1,5 +1,6 @@
 import os
 import shutil
+import json
 
 from django.conf import settings
 from gittle import Gittle
@@ -14,7 +15,7 @@ def update_repo(cookie):
     if not os.path.isdir(cookie.repo_path):
         repo = Gittle.clone(cookie.url, cookie.repo_path)
     else:
-        repo = Gittle.init(cookie.repo_path)
+        repo = Gittle(cookie.repo_path, cookie.url)
         repo.pull()
 
     cookie.options = {'repo_name': 'your repo'}

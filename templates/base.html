@@ -27,6 +27,12 @@
   {% endblock body_start %}
 
     <div class="container">
+      <header>
+        <div id="logo"></div>
+        <h1>FROLLINO</h1>
+        <h2>DIP INTO YOUR  PROJECT</h2>
+      </header>
+
       {% include "breadcrumb.html" %}
 
       <ul id="steps">
@@ -45,13 +51,7 @@
         </li>
 
         <li>
-          <select data-placeholder="Select a generator">
-            <option value="nonloso">nonloso</option>
-            <option value="ruby">ruby</option>
-            <option value="wordpress">wordpress</option>
-            <option value="django">django</option>
-            <option value="html5boilerplate">html5boilerplate</option>
-          </select>
+          <input type="text" placeholder="Insert a name..." />
           
           <a class="next"></a>
         </li>
