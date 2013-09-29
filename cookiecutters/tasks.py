@@ -2,9 +2,11 @@ import os
 import shutil
 import json
 
+from django.conf import settings
+from django.template.defaultfilters import slugify
+
 from celery import task
 from gittle import Gittle
-from django.conf import settings
 from cookiecutter.generate import generate_files
 
 from baker import utils
@@ -40,6 +42,8 @@ def exec_cookiecutter(cookie, options, user_id=None, use_github=True):
     out = os.path.join(settings.COOKIECUTTERS_TMP, "user_{0}".format(user_id))
 
     result = None
+
+    options['repo_name'] = slugify(options['repo_name'])
 
     try:
         os.makedirs(out)
