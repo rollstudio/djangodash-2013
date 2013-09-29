@@ -90,7 +90,11 @@ class BakingStatusView(APIView):
 
         res = AsyncResult(task_id)
 
+        result = res.result
+        if isinstance(result, BaseException):
+            result = str(result)
+
         return Response({
             'status': res.status,
-            'result': res.result,
+            'result': result,
         }, status.HTTP_200_OK)
