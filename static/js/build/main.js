@@ -13,6 +13,7 @@
       this.Questions = void 0;
       this.Baking_url = void 0;
       this.Checking_url = void 0;
+      this.ZipUrl = void 0;
       this.StepsEl = $('#steps > li');
       this.init();
     }
@@ -54,6 +55,9 @@
 
     fRoll.prototype.generateProject = function() {
       var _this = this;
+      $('.milk_bg').animate({
+        top: '30%'
+      }, 400);
       return $.ajax({
         url: this.Baking_url,
         dataType: 'json',
@@ -80,8 +84,26 @@
           return req.setRequestHeader("X-CSRFToken", window.csrftoken);
         },
         success: function(json) {
-          return console.log(json);
+          console.log(json);
+          if (json.status === 'SUCCESS') {
+            window.clearInterval(window.check_project);
+            _this.ZipUrl = json.result;
+            return _this.DownloadFiles();
+          }
         }
+      });
+    };
+
+    fRoll.prototype.DownloadFiles = function() {
+      var _this = this;
+      $('.loading_container').fadeOut(400, function() {
+        return $('.download_link').fadeIn();
+      });
+      $('.milk_bg').animate({
+        top: '70%'
+      }, 400);
+      return $(".download").on('click', function() {
+        return window.open(_this.ZipUrl);
       });
     };
 

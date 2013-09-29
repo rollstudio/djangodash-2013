@@ -11,6 +11,7 @@ class fRoll
 		@Questions = undefined
 		@Baking_url = undefined
 		@Checking_url = undefined
+		@ZipUrl = undefined
 
 		@StepsEl = $('#steps > li')
 
@@ -51,6 +52,9 @@ class fRoll
 
 
 	generateProject: ->
+
+		$('.milk_bg').animate top: '30%', 400
+
 		$.ajax
 			url: @Baking_url
 			dataType: 'json'
@@ -73,8 +77,20 @@ class fRoll
 				req.setRequestHeader("X-CSRFToken", window.csrftoken);
 			success: (json) =>
 				console.log json
-				#if json.status == 'PENDING'
+				if json.status == 'SUCCESS'
+					window.clearInterval window.check_project
+					@ZipUrl = json.result
+					@DownloadFiles()
 
+
+	DownloadFiles: ->
+		$('.loading_container').fadeOut 400, ->
+			$('.download_link').fadeIn()
+
+		$('.milk_bg').animate top: '70%', 400
+
+		$(".download").on 'click', =>
+			window.open @ZipUrl
 
 	initSteps: ->
 		for key,val of @Questions

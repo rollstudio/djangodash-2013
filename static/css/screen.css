@@ -1100,11 +1100,11 @@ html, body {
 .milk_bg {
   position: absolute;
   background-image: url('../images/latte.png?1380482362');
-  background-size: 1000px 112px;
+  background-size: contain;
   background-position-y: 0px;
   background-repeat: no-repeat;
   width: 100%;
-  top: 90%;
+  top: 50%;
   bottom: 0px;
   background-color: #f0f0e0;
 }
@@ -1301,8 +1301,89 @@ html, body {
 .container #steps li a:hover {
   background-color: #cca470;
 }
-
 /* line 220, ../sass/screen.scss */
+.container #steps li#end .download_link {
+  display: none;
+}
+/* line 225, ../sass/screen.scss */
+.container #steps li#end .loading_container span {
+  margin: 0px auto;
+  display: block;
+  background-color: #f0f0e0;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  border-radius: 50%;
+  background-image: url('../images/loading.gif?1380488976');
+  background-repeat: no-repeat;
+  width: 130px;
+  height: 110px;
+}
+/* line 232, ../sass/screen.scss */
+.container #steps li#end .loading_container h1 {
+  margin-top: 10px;
+}
+/* line 237, ../sass/screen.scss */
+.container #steps li#end .download_container {
+  display: table;
+  width: 50%;
+  margin: 0px auto;
+}
+/* line 241, ../sass/screen.scss */
+.container #steps li#end .download_container > * {
+  display: table-cell;
+}
+/* line 245, ../sass/screen.scss */
+.container #steps li#end .download_container p {
+  text-align: center;
+  padding-top: 10%;
+  font-size: 30px;
+}
+/* line 250, ../sass/screen.scss */
+.container #steps li#end .download_container .github {
+  background-size: 100%;
+  background-image: url('../images/github.png?1380489920');
+  background-repeat: no-repeat;
+  width: 148px;
+  height: 208px;
+  width: 35%;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  opacity: 0.8;
+  -webkit-transition: opacity 0.3s;
+  -moz-transition: opacity 0.3s;
+  -o-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+  cursor: pointer;
+}
+/* line 255, ../sass/screen.scss */
+.container #steps li#end .download_container .github:hover {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1;
+}
+/* line 261, ../sass/screen.scss */
+.container #steps li#end .download_container .download {
+  background-size: 100%;
+  background-image: url('../images/download.png?1380489921');
+  background-repeat: no-repeat;
+  width: 152px;
+  height: 208px;
+  width: 35%;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  opacity: 0.8;
+  -webkit-transition: opacity 0.3s;
+  -moz-transition: opacity 0.3s;
+  -o-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+  cursor: pointer;
+}
+/* line 266, ../sass/screen.scss */
+.container #steps li#end .download_container .download:hover {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1;
+}
+
+/* line 279, ../sass/screen.scss */
 input[type='text'] {
   outline: none;
   padding: 8px;
@@ -1321,12 +1402,12 @@ input[type='text'] {
   -o-transition: border 0.25s linear, color 0.25s linear, background-color 0.25s linear;
   transition: border 0.25s linear, color 0.25s linear, background-color 0.25s linear;
 }
-/* line 233, ../sass/screen.scss */
+/* line 292, ../sass/screen.scss */
 input[type='text'].error {
   border-color: #c34f4f;
 }
 
-/* line 239, ../sass/screen.scss */
+/* line 298, ../sass/screen.scss */
 .moveToLeftFade {
   -webkit-animation: moveToLeftFade 0.7s ease both;
   -moz-animation: moveToLeftFade 0.7s ease both;
@@ -1335,7 +1416,7 @@ input[type='text'].error {
   animation: moveToLeftFade 0.7s ease both;
 }
 
-/* line 242, ../sass/screen.scss */
+/* line 301, ../sass/screen.scss */
 .moveFromRightFade {
   -webkit-animation: moveFromRightFade 0.7s ease both;
   -moz-animation: moveFromRightFade 0.7s ease both;
@@ -1344,7 +1425,7 @@ input[type='text'].error {
   animation: moveFromRightFade 0.7s ease both;
 }
 
-/* line 245, ../sass/screen.scss */
+/* line 304, ../sass/screen.scss */
 .moveToRightFade {
   -webkit-animation: moveToRightFade 0.7s ease both;
   -moz-animation: moveToRightFade 0.7s ease both;
@@ -1353,7 +1434,7 @@ input[type='text'].error {
   animation: moveToRightFade 0.7s ease both;
 }
 
-/* line 248, ../sass/screen.scss */
+/* line 307, ../sass/screen.scss */
 .moveFromLeftFade {
   -webkit-animation: moveFromLeftFade 0.7s ease both;
   -moz-animation: moveFromLeftFade 0.7s ease both;
@@ -1362,12 +1443,12 @@ input[type='text'].error {
   animation: moveFromLeftFade 0.7s ease both;
 }
 
-/* line 253, ../sass/screen.scss */
+/* line 312, ../sass/screen.scss */
 .twitter-typeahead {
   width: 100%;
 }
 
-/* line 258, ../sass/screen.scss */
+/* line 317, ../sass/screen.scss */
 .typeahead,
 .tt-hint {
   width: 574px;
@@ -1382,17 +1463,17 @@ input[type='text'].error {
   outline: none;
 }
 
-/* line 271, ../sass/screen.scss */
+/* line 330, ../sass/screen.scss */
 .typeahead {
   background-color: #fff;
 }
 
-/* line 275, ../sass/screen.scss */
+/* line 334, ../sass/screen.scss */
 .tt-hint {
   color: #999999;
 }
 
-/* line 279, ../sass/screen.scss */
+/* line 338, ../sass/screen.scss */
 .tt-dropdown-menu {
   width: 100%;
   margin-top: -5px;
@@ -1406,37 +1487,37 @@ input[type='text'].error {
   border-top: 0px;
 }
 
-/* line 290, ../sass/screen.scss */
+/* line 349, ../sass/screen.scss */
 .tt-suggestion {
   padding: 8px 20px;
   font-size: 14px;
   line-height: 18px;
 }
 
-/* line 296, ../sass/screen.scss */
+/* line 355, ../sass/screen.scss */
 .tt-suggestion + .tt-suggestion {
   font-size: 14px;
   border-top: 1px solid #ccc;
 }
 
-/* line 301, ../sass/screen.scss */
+/* line 360, ../sass/screen.scss */
 .tt-suggestions .repo-language {
   float: right;
   font-style: italic;
 }
 
-/* line 306, ../sass/screen.scss */
+/* line 365, ../sass/screen.scss */
 .tt-suggestions .repo-name {
   font-size: 20px;
   font-weight: bold;
 }
 
-/* line 311, ../sass/screen.scss */
+/* line 370, ../sass/screen.scss */
 .tt-suggestions .repo-description {
   margin: 0;
 }
 
-/* line 315, ../sass/screen.scss */
+/* line 374, ../sass/screen.scss */
 .twitter-typeahead .tt-suggestion.tt-is-under-cursor {
   color: #03739c;
 }

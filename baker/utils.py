@@ -65,6 +65,11 @@ def make_zip(directory):
     if None in [settings.AWS_ACCESS_KEY_ID, settings.AWS_SECRET_ACCESS_KEY]:
         raise ImproperlyConfigured('AWS configuration not set.')
 
+
+    print settings.AWS_ACCESS_KEY_ID
+    print settings.AWS_SECRET_ACCESS_KEY
+    print settings.AWS_BUCKET
+    
     conn = S3Connection(settings.AWS_ACCESS_KEY_ID,
                         settings.AWS_SECRET_ACCESS_KEY)
     bucket = conn.create_bucket(settings.AWS_BUCKET)

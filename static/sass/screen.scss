@@ -42,11 +42,11 @@ html, body {
 .milk_bg {
 	position: absolute;
 	background-image: image-url('latte.png');
-	background-size: 1000px 112px;
+	background-size: contain;
 	background-position-y: 0px;
 	background-repeat: no-repeat;
 	width: 100%;
-	top: 90%;
+	top: 50%;
 	bottom: 0px;
 	background-color: $milk;
 
@@ -160,7 +160,7 @@ html, body {
 		
 		@include perspective(1200px);
 		@include transform-style(preserve-3d);
-
+	
 
 		li {
 			@include perspective(1200px);
@@ -209,6 +209,65 @@ html, body {
 
 				&:hover {
 					background-color: #cca470;
+				}
+			}
+
+		}
+
+
+		li#end {
+
+			.download_link {
+				display: none;
+			}
+			
+			.loading_container {
+				span {
+					margin: 0px auto;
+					display: block;
+					background-color: $milk;
+					@include border-radius(50%);
+					@include bg_img('loading.gif');
+				}
+				h1 {
+					margin-top: 10px;
+				}
+			}
+
+			.download_container {
+				display: table;
+				width: 50%;
+				margin: 0px auto;
+				> * {
+					display: table-cell;
+				}
+
+				p {
+					text-align: center;
+					padding-top: 10%;
+					font-size: 30px;
+				}
+				.github {
+					background-size: 100%;
+					@include bg_img('github.png');
+					width: 35%;
+					@include opacity(0.8);
+					&:hover {
+						@include opacity(1);
+					}
+					@include transition(opacity 0.3s);
+					cursor: pointer;
+				}
+				.download {
+					background-size: 100%;
+					@include bg_img('download.png');
+					width: 35%;
+					@include opacity(0.8);
+					&:hover {
+						@include opacity(1);
+					}
+					@include transition(opacity 0.3s);
+					cursor: pointer;
 				}
 			}
 		}

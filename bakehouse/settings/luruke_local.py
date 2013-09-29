@@ -13,3 +13,4 @@ DATABASES = {
         "PORT": "",
     }
 }
+AWS_BUCKET = 'bakehouse_luruke'
