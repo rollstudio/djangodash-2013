@@ -1039,31 +1039,25 @@ html, body {
 /* line 42, ../sass/screen.scss */
 .milk_bg {
   position: absolute;
-  background-image: url('../images/bigbg.png?1380465926');
+  background-image: url('../images/bigbg.png?1380471960');
   background-size: contain;
   background-position-y: 0px;
   background-repeat: no-repeat;
   width: 100%;
-  top: 30%;
-  bottom: 0px;
-}
-/* line 51, ../sass/screen.scss */
-.milk_bg:after {
-  position: absolute;
-  content: '';
-  width: 100%;
+  top: 230px;
   bottom: 0px;
   background-color: #f0f0e0;
 }
 
-/* line 60, ../sass/screen.scss */
+/* line 54, ../sass/screen.scss */
 .container {
+  position: relative;
   width: 100%;
   max-width: 700px;
   min-width: 320px;
   margin: 0px auto;
 }
-/* line 67, ../sass/screen.scss */
+/* line 62, ../sass/screen.scss */
 .container header {
   width: 100%;
   max-width: 400px;
@@ -1075,7 +1069,7 @@ html, body {
   max-width: 470px;
   text-align: center;
 }
-/* line 78, ../sass/screen.scss */
+/* line 73, ../sass/screen.scss */
 .container header #logo {
   background-image: url('../images/logo.png?1380466857');
   background-repeat: no-repeat;
@@ -1084,26 +1078,38 @@ html, body {
   float: left;
 }
 @media (min--moz-device-pixel-ratio: 1.3), (-o-min-device-pixel-ratio: 2.6 / 2), (-webkit-min-device-pixel-ratio: 1.3), (min-device-pixel-ratio: 1.3), (min-resolution: 1.3dppx) {
-  /* line 78, ../sass/screen.scss */
+  /* line 73, ../sass/screen.scss */
   .container header #logo {
     background-size: 100%;
     background-image: url('../images/logox2.png?1380466824');
   }
 }
-/* line 87, ../sass/screen.scss */
+/* line 82, ../sass/screen.scss */
 .container header .right {
   float: right;
 }
-/* line 89, ../sass/screen.scss */
+/* line 84, ../sass/screen.scss */
 .container header .right h1 {
   margin-top: 50px;
   font-size: 42px;
 }
-/* line 93, ../sass/screen.scss */
+@media only screen and (max-width: 430px) {
+  /* line 84, ../sass/screen.scss */
+  .container header .right h1 {
+    font-size: 30px;
+  }
+}
+/* line 91, ../sass/screen.scss */
 .container header .right h2 {
   font-size: 22px;
 }
-/* line 99, ../sass/screen.scss */
+@media only screen and (max-width: 430px) {
+  /* line 91, ../sass/screen.scss */
+  .container header .right h2 {
+    font-size: 15px;
+  }
+}
+/* line 100, ../sass/screen.scss */
 .container #breadcrumb {
   display: none;
   position: relative;
@@ -1114,7 +1120,7 @@ html, body {
   background-color: #bdc3c7;
   top: 180px;
 }
-/* line 109, ../sass/screen.scss */
+/* line 110, ../sass/screen.scss */
 .container #breadcrumb .progress {
   position: absolute;
   left: 0px;
@@ -1123,7 +1129,7 @@ html, body {
   width: 0px;
   background-color: #cc9861;
 }
-/* line 118, ../sass/screen.scss */
+/* line 119, ../sass/screen.scss */
 .container #breadcrumb span {
   display: block;
   position: absolute;
@@ -1144,11 +1150,11 @@ html, body {
   -o-border-radius: 50%;
   border-radius: 50%;
 }
-/* line 141, ../sass/screen.scss */
+/* line 142, ../sass/screen.scss */
 .container #breadcrumb span.done {
   background-position: -100%;
 }
-/* line 144, ../sass/screen.scss */
+/* line 145, ../sass/screen.scss */
 .container #breadcrumb span.current {
   -webkit-transform: scale(2);
   -moz-transform: scale(2);
@@ -1156,14 +1162,14 @@ html, body {
   -o-transform: scale(2);
   transform: scale(2);
 }
-/* line 152, ../sass/screen.scss */
+/* line 153, ../sass/screen.scss */
 .container #steps {
   position: relative;
   width: 100%;
   height: 300px;
   list-style: none;
 }
-/* line 158, ../sass/screen.scss */
+/* line 159, ../sass/screen.scss */
 .container #steps li {
   position: absolute;
   visibility: hidden;
@@ -1171,11 +1177,11 @@ html, body {
   width: 100%;
   padding: 10%;
 }
-/* line 165, ../sass/screen.scss */
+/* line 166, ../sass/screen.scss */
 .container #steps li.current {
   visibility: visible;
 }
-/* line 169, ../sass/screen.scss */
+/* line 170, ../sass/screen.scss */
 .container #steps li a {
   display: block;
   width: 30%;
@@ -1199,16 +1205,16 @@ html, body {
   font-size: 17px;
   letter-spacing: 6px;
 }
-/* line 188, ../sass/screen.scss */
+/* line 189, ../sass/screen.scss */
 .container #steps li a span {
   margin-left: 7px;
 }
-/* line 192, ../sass/screen.scss */
+/* line 193, ../sass/screen.scss */
 .container #steps li a:hover {
   background-color: #cca470;
 }
 
-/* line 202, ../sass/screen.scss */
+/* line 203, ../sass/screen.scss */
 input[type='text'] {
   outline: none;
   padding: 8px;
@@ -1227,12 +1233,12 @@ input[type='text'] {
   -o-transition: border 0.25s linear, color 0.25s linear, background-color 0.25s linear;
   transition: border 0.25s linear, color 0.25s linear, background-color 0.25s linear;
 }
-/* line 215, ../sass/screen.scss */
+/* line 216, ../sass/screen.scss */
 input[type='text'].error {
   border-color: #c34f4f;
 }
 
-/* line 221, ../sass/screen.scss */
+/* line 222, ../sass/screen.scss */
 .moveToLeftFade {
   -webkit-animation: moveToLeftFade 0.7s ease both;
   -moz-animation: moveToLeftFade 0.7s ease both;
@@ -1241,7 +1247,7 @@ input[type='text'].error {
   animation: moveToLeftFade 0.7s ease both;
 }
 
-/* line 224, ../sass/screen.scss */
+/* line 225, ../sass/screen.scss */
 .moveFromRightFade {
   -webkit-animation: moveFromRightFade 0.7s ease both;
   -moz-animation: moveFromRightFade 0.7s ease both;
@@ -1250,7 +1256,7 @@ input[type='text'].error {
   animation: moveFromRightFade 0.7s ease both;
 }
 
-/* line 227, ../sass/screen.scss */
+/* line 228, ../sass/screen.scss */
 .moveToRightFade {
   -webkit-animation: moveToRightFade 0.7s ease both;
   -moz-animation: moveToRightFade 0.7s ease both;
@@ -1259,7 +1265,7 @@ input[type='text'].error {
   animation: moveToRightFade 0.7s ease both;
 }
 
-/* line 230, ../sass/screen.scss */
+/* line 231, ../sass/screen.scss */
 .moveFromLeftFade {
   -webkit-animation: moveFromLeftFade 0.7s ease both;
   -moz-animation: moveFromLeftFade 0.7s ease both;
@@ -1268,12 +1274,12 @@ input[type='text'].error {
   animation: moveFromLeftFade 0.7s ease both;
 }
 
-/* line 235, ../sass/screen.scss */
+/* line 236, ../sass/screen.scss */
 .twitter-typeahead {
   width: 100%;
 }
 
-/* line 240, ../sass/screen.scss */
+/* line 241, ../sass/screen.scss */
 .typeahead,
 .tt-hint {
   width: 574px;
@@ -1288,17 +1294,17 @@ input[type='text'].error {
   outline: none;
 }
 
-/* line 253, ../sass/screen.scss */
+/* line 254, ../sass/screen.scss */
 .typeahead {
   background-color: #fff;
 }
 
-/* line 257, ../sass/screen.scss */
+/* line 258, ../sass/screen.scss */
 .tt-hint {
   color: #999999;
 }
 
-/* line 261, ../sass/screen.scss */
+/* line 262, ../sass/screen.scss */
 .tt-dropdown-menu {
   width: 100%;
   margin-top: -5px;
@@ -1312,37 +1318,37 @@ input[type='text'].error {
   border-top: 0px;
 }
 
-/* line 272, ../sass/screen.scss */
+/* line 273, ../sass/screen.scss */
 .tt-suggestion {
   padding: 8px 20px;
   font-size: 14px;
   line-height: 18px;
 }
 
-/* line 278, ../sass/screen.scss */
+/* line 279, ../sass/screen.scss */
 .tt-suggestion + .tt-suggestion {
   font-size: 14px;
   border-top: 1px solid #ccc;
 }
 
-/* line 283, ../sass/screen.scss */
+/* line 284, ../sass/screen.scss */
 .tt-suggestions .repo-language {
   float: right;
   font-style: italic;
 }
 
-/* line 288, ../sass/screen.scss */
+/* line 289, ../sass/screen.scss */
 .tt-suggestions .repo-name {
   font-size: 20px;
   font-weight: bold;
 }
 
-/* line 293, ../sass/screen.scss */
+/* line 294, ../sass/screen.scss */
 .tt-suggestions .repo-description {
   margin: 0;
 }
 
-/* line 297, ../sass/screen.scss */
+/* line 298, ../sass/screen.scss */
 .twitter-typeahead .tt-suggestion.tt-is-under-cursor {
   color: #03739c;
 }
