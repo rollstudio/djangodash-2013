@@ -218,10 +218,11 @@ html, body {
 		li#end {
 
 			.download_link {
-				display: none;
+				//display: none;
 			}
-			
+
 			.loading_container {
+				display: none;
 				span {
 					margin: 0px auto;
 					display: block;

@@ -1301,11 +1301,11 @@ html, body {
 .container #steps li a:hover {
   background-color: #cca470;
 }
-/* line 220, ../sass/screen.scss */
-.container #steps li#end .download_link {
+/* line 224, ../sass/screen.scss */
+.container #steps li#end .loading_container {
   display: none;
 }
-/* line 225, ../sass/screen.scss */
+/* line 226, ../sass/screen.scss */
 .container #steps li#end .loading_container span {
   margin: 0px auto;
   display: block;
@@ -1320,27 +1320,27 @@ html, body {
   width: 130px;
   height: 110px;
 }
-/* line 232, ../sass/screen.scss */
+/* line 233, ../sass/screen.scss */
 .container #steps li#end .loading_container h1 {
   margin-top: 10px;
 }
-/* line 237, ../sass/screen.scss */
+/* line 238, ../sass/screen.scss */
 .container #steps li#end .download_container {
   display: table;
   width: 50%;
   margin: 0px auto;
 }
-/* line 241, ../sass/screen.scss */
+/* line 242, ../sass/screen.scss */
 .container #steps li#end .download_container > * {
   display: table-cell;
 }
-/* line 245, ../sass/screen.scss */
+/* line 246, ../sass/screen.scss */
 .container #steps li#end .download_container p {
   text-align: center;
   padding-top: 10%;
   font-size: 30px;
 }
-/* line 250, ../sass/screen.scss */
+/* line 251, ../sass/screen.scss */
 .container #steps li#end .download_container .github {
   background-size: 100%;
   background-image: url('../images/github.png?1380489920');
@@ -1356,12 +1356,12 @@ html, body {
   transition: opacity 0.3s;
   cursor: pointer;
 }
-/* line 255, ../sass/screen.scss */
+/* line 256, ../sass/screen.scss */
 .container #steps li#end .download_container .github:hover {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
   opacity: 1;
 }
-/* line 261, ../sass/screen.scss */
+/* line 262, ../sass/screen.scss */
 .container #steps li#end .download_container .download {
   background-size: 100%;
   background-image: url('../images/download.png?1380489921');
@@ -1377,13 +1377,13 @@ html, body {
   transition: opacity 0.3s;
   cursor: pointer;
 }
-/* line 266, ../sass/screen.scss */
+/* line 267, ../sass/screen.scss */
 .container #steps li#end .download_container .download:hover {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
   opacity: 1;
 }
 
-/* line 279, ../sass/screen.scss */
+/* line 280, ../sass/screen.scss */
 input[type='text'] {
   outline: none;
   padding: 8px;
@@ -1402,12 +1402,12 @@ input[type='text'] {
   -o-transition: border 0.25s linear, color 0.25s linear, background-color 0.25s linear;
   transition: border 0.25s linear, color 0.25s linear, background-color 0.25s linear;
 }
-/* line 292, ../sass/screen.scss */
+/* line 293, ../sass/screen.scss */
 input[type='text'].error {
   border-color: #c34f4f;
 }
 
-/* line 298, ../sass/screen.scss */
+/* line 299, ../sass/screen.scss */
 .moveToLeftFade {
   -webkit-animation: moveToLeftFade 0.7s ease both;
   -moz-animation: moveToLeftFade 0.7s ease both;
@@ -1416,7 +1416,7 @@ input[type='text'].error {
   animation: moveToLeftFade 0.7s ease both;
 }
 
-/* line 301, ../sass/screen.scss */
+/* line 302, ../sass/screen.scss */
 .moveFromRightFade {
   -webkit-animation: moveFromRightFade 0.7s ease both;
   -moz-animation: moveFromRightFade 0.7s ease both;
@@ -1425,7 +1425,7 @@ input[type='text'].error {
   animation: moveFromRightFade 0.7s ease both;
 }
 
-/* line 304, ../sass/screen.scss */
+/* line 305, ../sass/screen.scss */
 .moveToRightFade {
   -webkit-animation: moveToRightFade 0.7s ease both;
   -moz-animation: moveToRightFade 0.7s ease both;
@@ -1434,7 +1434,7 @@ input[type='text'].error {
   animation: moveToRightFade 0.7s ease both;
 }
 
-/* line 307, ../sass/screen.scss */
+/* line 308, ../sass/screen.scss */
 .moveFromLeftFade {
   -webkit-animation: moveFromLeftFade 0.7s ease both;
   -moz-animation: moveFromLeftFade 0.7s ease both;
@@ -1443,12 +1443,12 @@ input[type='text'].error {
   animation: moveFromLeftFade 0.7s ease both;
 }
 
-/* line 312, ../sass/screen.scss */
+/* line 313, ../sass/screen.scss */
 .twitter-typeahead {
   width: 100%;
 }
 
-/* line 317, ../sass/screen.scss */
+/* line 318, ../sass/screen.scss */
 .typeahead,
 .tt-hint {
   width: 574px;
@@ -1463,17 +1463,17 @@ input[type='text'].error {
   outline: none;
 }
 
-/* line 330, ../sass/screen.scss */
+/* line 331, ../sass/screen.scss */
 .typeahead {
   background-color: #fff;
 }
 
-/* line 334, ../sass/screen.scss */
+/* line 335, ../sass/screen.scss */
 .tt-hint {
   color: #999999;
 }
 
-/* line 338, ../sass/screen.scss */
+/* line 339, ../sass/screen.scss */
 .tt-dropdown-menu {
   width: 100%;
   margin-top: -5px;
@@ -1487,37 +1487,37 @@ input[type='text'].error {
   border-top: 0px;
 }
 
-/* line 349, ../sass/screen.scss */
+/* line 350, ../sass/screen.scss */
 .tt-suggestion {
   padding: 8px 20px;
   font-size: 14px;
   line-height: 18px;
 }
 
-/* line 355, ../sass/screen.scss */
+/* line 356, ../sass/screen.scss */
 .tt-suggestion + .tt-suggestion {
   font-size: 14px;
   border-top: 1px solid #ccc;
 }
 
-/* line 360, ../sass/screen.scss */
+/* line 361, ../sass/screen.scss */
 .tt-suggestions .repo-language {
   float: right;
   font-style: italic;
 }
 
-/* line 365, ../sass/screen.scss */
+/* line 366, ../sass/screen.scss */
 .tt-suggestions .repo-name {
   font-size: 20px;
   font-weight: bold;
 }
 
-/* line 370, ../sass/screen.scss */
+/* line 371, ../sass/screen.scss */
 .tt-suggestions .repo-description {
   margin: 0;
 }
 
-/* line 374, ../sass/screen.scss */
+/* line 375, ../sass/screen.scss */
 .twitter-typeahead .tt-suggestion.tt-is-under-cursor {
   color: #03739c;
 }

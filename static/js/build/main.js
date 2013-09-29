@@ -14,6 +14,7 @@
       this.Baking_url = void 0;
       this.Checking_url = void 0;
       this.ZipUrl = void 0;
+      this.ChoiseDownload = void 0;
       this.StepsEl = $('#steps > li');
       this.init();
     }
@@ -28,10 +29,7 @@
         local: window.Bakehouse.cookies,
         valueKey: 'value',
         template: ['<p class="repo-language">{{language}}</p>', '<p class="repo-name">{{options.project_name}}</p>', '<p class="repo-description">{{description}}</p>'].join(''),
-        engine: Hogan,
-        selected: function(selection) {
-          return console.log(selection);
-        }
+        engine: Hogan
       });
       return input.on('typeahead:selected typeahead:autocompleted', function(e, datum) {
         return _this.GeneratorId = datum.id;
@@ -53,19 +51,25 @@
       return this.initBreadCrumb();
     };
 
-    fRoll.prototype.generateProject = function() {
+    fRoll.prototype.generateProject = function(type) {
       var _this = this;
+      $('.download_link').fadeOut(400, function() {
+        return $('.loading_container').fadeIn();
+      });
       $('.milk_bg').animate({
         top: '30%'
       }, 400);
+      this.ChoiseDownload = type;
+      if (this.ChoiseDownload === 'github') {
+        this.Questions._github = 1;
+      }
       return $.ajax({
         url: this.Baking_url,
         dataType: 'json',
         type: 'POST',
         data: this.Questions,
         beforeSend: function(req) {
-          req.setRequestHeader("X-CSRFToken", window.csrftoken);
-          return console.log('loading');
+          return req.setRequestHeader("X-CSRFToken", window.csrftoken);
         },
         success: function(json) {
           _this.Checking_url = json.url;
@@ -84,11 +88,14 @@
           return req.setRequestHeader("X-CSRFToken", window.csrftoken);
         },
         success: function(json) {
-          console.log(json);
           if (json.status === 'SUCCESS') {
             window.clearInterval(window.check_project);
-            _this.ZipUrl = json.result;
-            return _this.DownloadFiles();
+            if (_this.ChoiseDownload === 'zip') {
+              window.open(json.result);
+            }
+            if (_this.ChoiseDownload === 'github') {
+              return console.log('githuub');
+            }
           }
         }
       });
@@ -96,14 +103,12 @@
 
     fRoll.prototype.DownloadFiles = function() {
       var _this = this;
-      $('.loading_container').fadeOut(400, function() {
-        return $('.download_link').fadeIn();
+      $(".download").on('click', function() {
+        return _this.generateProject('zip');
       });
-      $('.milk_bg').animate({
-        top: '70%'
-      }, 400);
-      return $(".download").on('click', function() {
-        return window.open(_this.ZipUrl);
+      return $(".github").on('click', function() {
+        window.github_pop = window.open('accounts/github/login/', 'Github', 'width=800, height=600');
+        return window.github_pop.focus();
       });
     };
 
@@ -153,6 +158,7 @@
         input.addClass('error');
         return;
       }
+      this.Questions[input.attr('id')] = input.val();
       input.removeClass('error');
       return this.jumpTo(this.currentStep + 1);
     };
@@ -188,7 +194,7 @@
       this.getStep(newStep).addClass('current');
       this.currentStep = newStep;
       if (this.currentStep === this.stepNumber - 1) {
-        return this.generateProject();
+        return this.DownloadFiles();
       }
     };
 
@@ -197,6 +203,10 @@
   })();
 
   roll = new fRoll;
+
+  window.generateGithub = function() {
+    return roll.generateProject(github);
+  };
 
   $(document).on('click', 'a.next', function() {
     return roll.goNext();

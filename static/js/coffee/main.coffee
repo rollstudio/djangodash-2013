@@ -13,6 +13,8 @@ class fRoll
 		@Checking_url = undefined
 		@ZipUrl = undefined
 
+		@ChoiseDownload = undefined
+
 		@StepsEl = $('#steps > li')
 
 		@init()
@@ -31,8 +33,6 @@ class fRoll
 			   '<p class="repo-description">{{description}}</p>'
 			].join('')
 			engine: Hogan
-			selected: (selection) ->
-				console.log selection
 
 		input.on 'typeahead:selected typeahead:autocompleted', (e, datum) =>
 			@GeneratorId = datum.id
@@ -51,9 +51,16 @@ class fRoll
 		@initBreadCrumb()
 
 
-	generateProject: ->
+	generateProject: (type) ->
+		$('.download_link').fadeOut 400, ->
+			$('.loading_container').fadeIn()
 
 		$('.milk_bg').animate top: '30%', 400
+
+		@ChoiseDownload = type
+
+		if @ChoiseDownload == 'github'
+			@Questions._github = 1
 
 		$.ajax
 			url: @Baking_url
@@ -62,7 +69,6 @@ class fRoll
 			data: @Questions
 			beforeSend: (req) ->
 				req.setRequestHeader("X-CSRFToken", window.csrftoken);
-				console.log 'loading'
 			success: (json) =>
 				@Checking_url = json.url
 				window.check_project = window.setInterval $.proxy(@checkProject, @), 4000
@@ -76,21 +82,30 @@ class fRoll
 			beforeSend: (req) ->
 				req.setRequestHeader("X-CSRFToken", window.csrftoken);
 			success: (json) =>
-				console.log json
 				if json.status == 'SUCCESS'
 					window.clearInterval window.check_project
-					@ZipUrl = json.result
-					@DownloadFiles()
+					if @ChoiseDownload == 'zip'
+						window.open json.result
+
+					if @ChoiseDownload == 'github'
+						console.log 'githuub'
 
 
 	DownloadFiles: ->
-		$('.loading_container').fadeOut 400, ->
-			$('.download_link').fadeIn()
+		#LAST STEP
 
-		$('.milk_bg').animate top: '70%', 400
+		#$('.loading_container').fadeOut 400, ->
+		#	$('.download_link').fadeIn()
+
+		#$('.milk_bg').animate top: '70%', 400
 
 		$(".download").on 'click', =>
-			window.open @ZipUrl
+			@generateProject 'zip'
+			#window.open @ZipUrl
+
+		$(".github").on 'click', =>
+			window.github_pop = window.open 'accounts/github/login/', 'Github', 'width=800, height=600'
+			window.github_pop.focus()
 
 	initSteps: ->
 		for key,val of @Questions
@@ -139,6 +154,9 @@ class fRoll
 			input.addClass 'error'
 			return;
 
+
+		@Questions[input.attr('id')] = input.val()
+
 		input.removeClass 'error'
 		@jumpTo( @currentStep + 1 )
 
@@ -175,10 +193,13 @@ class fRoll
 		@getStep(newStep).addClass 'current'
 		@currentStep = newStep
 
-		@generateProject() if @currentStep == @stepNumber-1
+		@DownloadFiles() if @currentStep == @stepNumber-1
 
 
 roll = new fRoll
+
+window.generateGithub = ->
+	roll.generateProject(github)
 
 #roll.stepNumber = 10
 #roll.initBreadCrumb()
