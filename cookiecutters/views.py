@@ -43,6 +43,10 @@ class JSONBakeView(generics.RetrieveAPIView):
                                  name=cookie)
 
 
+class CookieListView(generics.ListAPIView):
+    model = CookieCutter
+    serializer_class = CookieCutterSerializer
+
 
 class CookieDetailView(generics.RetrieveAPIView):
     model = CookieCutter
