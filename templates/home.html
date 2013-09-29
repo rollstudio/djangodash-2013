@@ -66,7 +66,8 @@
 <script>
     window.Bakehouse = {
         cookiesURL: '{% url 'cookie_list' %}',
-        cookies: {{ cookies|safe }}
+        cookies: {{ cookies|safe }},
+        github_logiN: '{% url 'github_login' %}'
     };
 </script>
 
