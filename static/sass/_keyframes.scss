@@ -25,3 +25,12 @@
 		@include transform( translateX(-100%) );
 	}
 }
+
+@include keyframes(movemilk) {
+	from {
+		background-position-x: 0%;
+	}
+    to {
+        background-position-x: 1000%;
+    }
+}

@@ -9,6 +9,8 @@ class fRoll
 
 		@GeneratorId = undefined
 		@Questions = undefined
+		@Baking_url = undefined
+		@Checking_url = undefined
 
 		@StepsEl = $('#steps > li')
 
@@ -37,36 +39,49 @@ class fRoll
 
 	loadGenerator: (id_generator) ->
 		choise = _.where window.generators, {id: @GeneratorId}
+
+		return if !choise[0]
+
+		@Baking_url = choise[0].baking_url
 		@Questions = choise[0].options
 
-		@stepNumber = _(@Questions).size()
+		@stepNumber = _(@Questions).size() + 2
 		@initSteps()
 		@initBreadCrumb()
 
-		###
+
+	generateProject: ->
 		$.ajax
-			url: 'http://127.0.0.1:8000/luruke/simple/bake/'
+			url: @Baking_url
 			dataType: 'json'
 			type: 'POST'
+			data: @Questions
 			beforeSend: (req) ->
 				req.setRequestHeader("X-CSRFToken", window.csrftoken);
-			success: (json) ->
-				console.log(json)
-		###
+				console.log 'loading'
+			success: (json) =>
+				@Checking_url = json.url
+				window.check_project = window.setInterval $.proxy(@checkProject, @), 4000
 
-		
-		
-		#@goNext()
-		#@BreadCrumbEl.fadeIn()
+
+	checkProject: ->
+		$.ajax
+			url: @Checking_url
+			dataType: 'json'
+			type: 'GET'
+			beforeSend: (req) ->
+				req.setRequestHeader("X-CSRFToken", window.csrftoken);
+			success: (json) =>
+				console.log json
+				#if json.status == 'PENDING'
 
 
 	initSteps: ->
-		
 		for key,val of @Questions
 			template = "
 				<li>
-					<input id='#{key}' placeholder='#{val}'></input>
-
+					<h1>#{_(key).humanize()}</h1>
+					<input type='text' id='#{key}' value='#{val}'></input>
 					<a class='next'>
 						<span>
 							Next
@@ -74,8 +89,7 @@ class fRoll
 					</a>
 				</li>
 			"
-			console.log template
-			@StepsEl.parent().append( template )
+			@StepsEl.filter('#intro').after( template )
 
 
 		@StepsEl = $('#steps > li') #update it!
@@ -129,6 +143,7 @@ class fRoll
 
 		@getStep(@currentStep).addClass(out_effect).on('webkitAnimationEnd', ->
 			$(@).off 'webkitAnimationEnd'
+			$(@).hide()
 			$(@).removeClass "#{out_effect} current"
 
 			self.isAnimating = false
@@ -143,6 +158,8 @@ class fRoll
 
 		@getStep(newStep).addClass 'current'
 		@currentStep = newStep
+
+		@generateProject() if @currentStep == @stepNumber-1
 
 
 roll = new fRoll
