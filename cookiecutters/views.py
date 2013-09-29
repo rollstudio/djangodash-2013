@@ -5,6 +5,8 @@ from rest_framework import generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
+from celery.result import AsyncResult
+
 from cookiecutters.models import CookieCutter
 from cookiecutters import tasks
 
@@ -69,14 +71,10 @@ class BakeCookieView(APIView):
                                  name=cookie)
 
     def post(self, request, *args, **kwargs):
-
-        print kwargs
-
         obj = self.get_object()
 
-        print obj
-
         form = obj.form(request.POST)
+
         if form.is_valid():
             task = tasks.exec_cookiecutter.delay(obj, form.cleaned_data, request.user.id, form.use_github)
 
@@ -85,4 +83,18 @@ class BakeCookieView(APIView):
             }, status.HTTP_201_CREATED)
 
         return Response(form.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+class BakingStatusView(APIView):
+    def get(self, request, *args, **kwargs):
+        task_id = self.kwargs.get('task_id')
+
+        res = AsyncResult(task_id)
+
+        print res
+
+        return Response({
+            'status': res.status
+        }, status.HTTP_201_CREATED)
 
