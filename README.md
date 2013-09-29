@@ -1,6 +1,8 @@
 djangodash-2013
 ===============
 
+A web interface for [CookieCutter](https://github.com/audreyr/cookiecutter)
+
 
     $ virtualenv env
     $ . env/bin/activate
