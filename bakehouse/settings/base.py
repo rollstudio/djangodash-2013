@@ -227,3 +227,5 @@ AWS_ACCESS_KEY_ID = get_env_setting('AWS_ACCESS_KEY_ID', '')
 AWS_SECRET_ACCESS_KEY = get_env_setting('AWS_SECRET_ACCESS_KEY', '')
 
 LOGIN_REDIRECT_URL = reverse_lazy('github_callback')
+
+BROKER_URL = 'amqp://guest:guest@localhost:5672/'

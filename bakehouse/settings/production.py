@@ -45,8 +45,6 @@ STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 STATIC_ROOT = ''
 STATIC_URL = 'http://static.tyrion.mx/'
 
-BROKER_URL = 'amqp://guest:guest@localhost:5672/'
-
 
 LOGGING = {
     'version': 1,
