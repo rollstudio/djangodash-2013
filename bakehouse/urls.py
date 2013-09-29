@@ -7,8 +7,8 @@ admin.autodiscover()
 from django.views.generic.base import TemplateView
 
 
-class ComingView(TemplateView):
-    template_name = 'coming.html'
+class HomeView(TemplateView):
+    template_name = 'home.html'
 
 
 urlpatterns = patterns('',
@@ -16,6 +16,6 @@ urlpatterns = patterns('',
     url(r'^accounts/', include('allauth.urls')),
     url(r'^admin/', include(admin.site.urls)),
 
-    url(r'^$', ComingView.as_view(), name='home'),
+    url(r'^$', HomeView.as_view(), name='home'),
     url(r'^', include('cookiecutters.urls')),
 )

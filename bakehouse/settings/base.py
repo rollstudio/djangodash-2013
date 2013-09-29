@@ -211,3 +211,11 @@ LOGGING = {
 
 GITHUB_COOKIECUTTER_USERNAME = 'bakehouse'
 GITHUB_PRIVATE_KEY = join(SITE_ROOT, 'id_rsa')
+
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.JSONPRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    )
+}
