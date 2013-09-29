@@ -94,8 +94,14 @@
               window.open(json.result);
             }
             if (_this.ChoiseDownload === 'github') {
-              return console.log('githuub');
+              console.log('githuub');
             }
+            return $('.loading_container').fadeOut(400, function() {
+              $('.done').fadeIn();
+              return $('.milk_bg').animate({
+                top: '70%'
+              });
+            });
           }
         }
       });
