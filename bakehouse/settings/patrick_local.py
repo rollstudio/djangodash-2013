@@ -15,3 +15,5 @@ DATABASES = {
 }
 
 BROKER_URL = 'amqp://guest:guest@localhost:5672/'
+
+GITHUB_PRIVATE_KEY = '/tmp/tmp_rsa'

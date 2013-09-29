@@ -77,8 +77,6 @@ class BakeCookieView(APIView):
         form = obj.form(request.DATA)
 
         if form.is_valid():
-            print form.cleaned_data
-
             task = tasks.exec_cookiecutter.delay(
                 obj, form.cleaned_data, request.user.id, form.use_github
             )
@@ -101,4 +99,3 @@ class BakingStatusView(APIView):
             'status': res.status,
             'result': res.result,
         }, status.HTTP_200_OK)
-
