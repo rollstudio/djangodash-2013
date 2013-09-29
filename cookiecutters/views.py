@@ -1,10 +1,12 @@
 from django.core.urlresolvers import reverse
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404
+from django.views.generic.base import TemplateView
 
 from rest_framework import status
 from rest_framework import generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.renderers import JSONRenderer
 
 from celery.result import AsyncResult
 
@@ -14,24 +16,17 @@ from cookiecutters import tasks
 from .serializers import CookieCutterSerializer
 
 
-def cookiecutter_detail(request, username, cookie):
-    cookie = get_object_or_404(CookieCutter, user__username=username, name=cookie)
-    return render(request, 'cookiecutters/detail.html', {'cookie': cookie})
+class HomeView(TemplateView):
+    template_name = 'home.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(HomeView, self).get_context_data(**kwargs)
 
-def bake(request, username, cookie):
-    cookie = get_object_or_404(CookieCutter, user__username=username, name=cookie)
+        s = CookieCutterSerializer(CookieCutter.objects.all(), many=True)
 
-    if request.method == 'POST':
-        form = cookie.form(request.POST)
-        if form.is_valid():
-            tasks.exec_cookiecutter(cookie, form.cleaned_data, request.user.id, form.use_github)
-            #return redirect('/success')
-            return render(request, 'cookiecutters/bake_success.html', locals())
-    else:
-        form = cookie.form()
+        context['cookies'] = s.data
 
-    return render(request, 'cookiecutters/bake.html', locals())
+        return context
 
 
 class JSONBakeView(generics.RetrieveAPIView):

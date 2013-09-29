@@ -28,7 +28,12 @@ class CookieCutterSerializer(serializers.HyperlinkedModelSerializer):
     options = NaiveSerializer('options')
     baking_url = BakeHyperlinkField(view_name='bake_cookie')
 
+    value = serializers.SerializerMethodField('_value')
+
+    def _value(self, obj):
+        return obj.options.get('project_name', 'No name')
+
     class Meta:
         model = CookieCutter
-        fields = ('id', 'name', 'description', 'url',
+        fields = ('id', 'name', 'description', 'url', 'value',
                   'options', 'language', 'tags', 'baking_url')

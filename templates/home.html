@@ -65,7 +65,8 @@
 {% block body_end %}
 <script>
     window.Bakehouse = {
-        cookiesURL: '{% url 'cookie_list' %}'
+        cookiesURL: '{% url 'cookie_list' %}',
+        cookies: {{ cookies|safe }}
     };
 </script>
 
