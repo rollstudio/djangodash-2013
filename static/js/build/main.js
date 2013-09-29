@@ -205,7 +205,7 @@
   roll = new fRoll;
 
   window.generateGithub = function() {
-    return roll.generateProject(github);
+    return roll.generateProject('github');
   };
 
   $(document).on('click', 'a.next', function() {

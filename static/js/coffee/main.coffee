@@ -199,7 +199,7 @@ class fRoll
 roll = new fRoll
 
 window.generateGithub = ->
-	roll.generateProject(github)
+	roll.generateProject('github')
 
 #roll.stepNumber = 10
 #roll.initBreadCrumb()
