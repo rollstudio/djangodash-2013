@@ -87,14 +87,11 @@ class BakeCookieView(APIView):
         return Response(form.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-
 class BakingStatusView(APIView):
     def get(self, request, *args, **kwargs):
         task_id = self.kwargs.get('task_id')
 
         res = AsyncResult(task_id)
-
-        print res
 
         return Response({
             'status': res.status

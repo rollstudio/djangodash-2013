@@ -2,11 +2,16 @@ import os
 import shutil
 import json
 
-from django.conf import settings
 from gittle import Gittle
-from celery import task
+
+from django.conf import settings
+
 from cookiecutter.generate import generate_files
+
 from baker import utils
+
+from celery import task
+from celery import current_task
 
 
 @task()
