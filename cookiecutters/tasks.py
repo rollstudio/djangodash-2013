@@ -24,7 +24,6 @@ def update_repo(cookie):
         repo.pull()
 
     cookie.options = {'repo_name': 'your repo'}
-
     options_file = os.path.join(cookie.repo_path, 'cookiecutter.json')
 
     if os.path.isfile(options_file):
@@ -35,39 +34,25 @@ def update_repo(cookie):
 
 @task()
 def exec_cookiecutter(cookie, options, user_id=None, use_github=True):
-    # TODO: not fully implemented
     assert 'repo_name' in options
     if user_id is None:
         user_id = 'anon'
         assert use_github is not True
 
     out = os.path.join(settings.COOKIECUTTERS_TMP, "user_{0}".format(user_id))
-
-    result = None
-
     options['repo_name'] = slugify(options['repo_name'])
 
     try:
-        os.makedirs(out)
-
+        os.makedirs(out) # this should be useless
         generate_files(cookie.repo_path, {'cookiecutter': options}, out)
 
         repo_path = os.path.join(out, options['repo_name'])
-
         if use_github:
-            try:
-                repo = utils.create_repository(user_id, options['repo_name'])
-            except GitHubError:
-                return 'Error'
-
-
+            repo = utils.create_repository(user_id, options['repo_name'])
             utils.push_directory_to_repo(repo_path, repo)
-
-            result = repo.html_url
+            return repo.html_url
         else:
-            result = utils.make_zip(repo_path)
+            return utils.make_zip(repo_path)
     finally:
         if os.path.exists(out):
             shutil.rmtree(out)
-
-    return result
