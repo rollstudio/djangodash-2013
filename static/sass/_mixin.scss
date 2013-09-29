@@ -75,3 +75,22 @@
     @content;
   }
 }
+
+
+@mixin responsive($media) {
+  @if $media == tablet_l {
+    @media only screen and (max-width: 1024px) { @content; }
+  }
+  @else if $media == tablet_p {
+    @media only screen and (max-width: 768px) { @content; }
+  }
+  @else if $media == small_desktop {
+    @media only screen and (max-width: 1201px) { @content; }
+  }
+  @else if $media == medium_desktop {
+    @media only screen and (max-width: 1350px) { @content; }
+  }
+  @else if $media == mobile {
+   @media only screen and (max-width: 430px) { @content; } 
+  }
+}

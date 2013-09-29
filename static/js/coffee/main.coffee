@@ -7,6 +7,9 @@ class fRoll
 		@BreadCrumbEl = $('#breadcrumb')
 		@BreadCrumbProgress = @BreadCrumbEl.find '.progress'
 
+		@GeneratorId = undefined
+		@Questions = undefined
+
 		@StepsEl = $('#steps > li')
 
 		@init()
@@ -18,26 +21,64 @@ class fRoll
 			name: 'asda'
 			minLength: 0
 			local: window.generators
-			template: [                                                                 
-			   '<p class="repo-language">{{language}}</p>',                              
-			   '<p class="repo-name">{{options.project_name}}</p>',                                      
-			   '<p class="repo-description">{{description}}</p>'                         
-			 ].join('')                                                                 
-			 engine: Hogan
-			#local: window.generators
+			valueKey: 'value'
+			template: [
+			   '<p class="repo-language">{{language}}</p>',
+			   '<p class="repo-name">{{options.project_name}}</p>',
+			   '<p class="repo-description">{{description}}</p>'
+			].join('')
+			engine: Hogan
+			selected: (selection) ->
+				console.log selection
 
+		input.on 'typeahead:selected typeahead:autocompleted', (e, datum) =>
+			@GeneratorId = datum.id
 
-		##input.on 'focus', input.typeahead.bind(input, 'lookup')
-
-		#$("#typeaheadField").on('focus', $("#typeaheadField").typeahead.bind($("#typeaheadField"), 'lookup') );
 
 	loadGenerator: (id_generator) ->
-		#ajax request ?jsonp
-		@BreadCrumbEl.fadeIn()
-		@stepNumber = 4
-		@initBreadCrumb()
-		@goNext()
+		choise = _.where window.generators, {id: @GeneratorId}
+		@Questions = choise[0].options
 
+		@stepNumber = _(@Questions).size()
+		@initSteps()
+		@initBreadCrumb()
+
+		###
+		$.ajax
+			url: 'http://127.0.0.1:8000/luruke/simple/bake/'
+			dataType: 'json'
+			type: 'POST'
+			beforeSend: (req) ->
+				req.setRequestHeader("X-CSRFToken", window.csrftoken);
+			success: (json) ->
+				console.log(json)
+		###
+
+		
+		
+		#@goNext()
+		#@BreadCrumbEl.fadeIn()
+
+
+	initSteps: ->
+		
+		for key,val of @Questions
+			template = "
+				<li>
+					<input id='#{key}' placeholder='#{val}'></input>
+
+					<a class='next'>
+						<span>
+							Next
+						</span>
+					</a>
+				</li>
+			"
+			console.log template
+			@StepsEl.parent().append( template )
+
+
+		@StepsEl = $('#steps > li') #update it!
 
 
 	initBreadCrumb: ->
@@ -47,6 +88,9 @@ class fRoll
 			bullet = $('<span />').css left: "#{100*i/(@stepNumber-1)}%"
 			bullet.addClass 'done current' if i == 0
 			bullet.appendTo @BreadCrumbEl
+
+		@BreadCrumbEl.fadeIn()
+		@goNext()
 
 	progressBreadCrumb: (step_number) ->
 		bullet_step = @BreadCrumbEl.find('span').eq(step_number)
@@ -107,7 +151,7 @@ roll = new fRoll
 #roll.initBreadCrumb()
 
 
-$('a.next').on 'click', ->
+$(document).on 'click', 'a.next', ->
 	roll.goNext()
 
 

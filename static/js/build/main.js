@@ -9,33 +9,69 @@
       this.isAnimating = false;
       this.BreadCrumbEl = $('#breadcrumb');
       this.BreadCrumbProgress = this.BreadCrumbEl.find('.progress');
+      this.GeneratorId = void 0;
+      this.Questions = void 0;
       this.StepsEl = $('#steps > li');
       this.init();
     }
 
     fRoll.prototype.init = function() {
-      var input;
+      var input,
+        _this = this;
       input = this.StepsEl.filter('#intro').find('input');
-      return input.typeahead({
+      input.typeahead({
         name: 'asda',
         minLength: 0,
         local: window.generators,
+        valueKey: 'value',
         template: ['<p class="repo-language">{{language}}</p>', '<p class="repo-name">{{options.project_name}}</p>', '<p class="repo-description">{{description}}</p>'].join(''),
-        engine: Hogan
+        engine: Hogan,
+        selected: function(selection) {
+          return console.log(selection);
+        }
+      });
+      return input.on('typeahead:selected typeahead:autocompleted', function(e, datum) {
+        return _this.GeneratorId = datum.id;
       });
     };
 
     fRoll.prototype.loadGenerator = function(id_generator) {
-      this.BreadCrumbEl.fadeIn();
-      this.stepNumber = 4;
-      this.initBreadCrumb();
-      return this.goNext();
+      var choise;
+      choise = _.where(window.generators, {
+        id: this.GeneratorId
+      });
+      this.Questions = choise[0].options;
+      this.stepNumber = _(this.Questions).size();
+      this.initSteps();
+      return this.initBreadCrumb();
+      /*
+      		$.ajax
+      			url: 'http://127.0.0.1:8000/luruke/simple/bake/'
+      			dataType: 'json'
+      			type: 'POST'
+      			beforeSend: (req) ->
+      				req.setRequestHeader("X-CSRFToken", window.csrftoken);
+      			success: (json) ->
+      				console.log(json)
+      */
+
+    };
+
+    fRoll.prototype.initSteps = function() {
+      var key, template, val, _ref;
+      _ref = this.Questions;
+      for (key in _ref) {
+        val = _ref[key];
+        template = "				<li>					<input id='" + key + "' placeholder='" + val + "'></input>					<a class='next'>						<span>							Next						</span>					</a>				</li>			";
+        console.log(template);
+        this.StepsEl.parent().append(template);
+      }
+      return this.StepsEl = $('#steps > li');
     };
 
     fRoll.prototype.initBreadCrumb = function() {
-      var b_width, bullet, i, _i, _ref, _results;
+      var b_width, bullet, i, _i, _ref;
       b_width = this.BreadCrumbEl.width();
-      _results = [];
       for (i = _i = 0, _ref = this.stepNumber - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; i = 0 <= _ref ? ++_i : --_i) {
         bullet = $('<span />').css({
           left: "" + (100 * i / (this.stepNumber - 1)) + "%"
@@ -43,9 +79,10 @@
         if (i === 0) {
           bullet.addClass('done current');
         }
-        _results.push(bullet.appendTo(this.BreadCrumbEl));
+        bullet.appendTo(this.BreadCrumbEl);
       }
-      return _results;
+      this.BreadCrumbEl.fadeIn();
+      return this.goNext();
     };
 
     fRoll.prototype.progressBreadCrumb = function(step_number) {
@@ -108,7 +145,7 @@
 
   roll = new fRoll;
 
-  $('a.next').on('click', function() {
+  $(document).on('click', 'a.next', function() {
     return roll.goNext();
   });
 
