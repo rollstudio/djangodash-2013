@@ -1,8 +1,8 @@
 from django.views.generic import DetailView
 from django.shortcuts import get_object_or_404, render, redirect
 
-from .models import CookieCutter
-from .forms import GeneratorForm
+from cookiecutters.models import CookieCutter
+from cookiecutters import tasks
 
 
 def cookiecutter_detail(request, username, cookie):
@@ -12,19 +12,24 @@ def cookiecutter_detail(request, username, cookie):
 
 def bake(request, username, cookie):
     cookie = get_object_or_404(CookieCutter, user__username=username, name=cookie)
-    if request.method == 'POST':
-        options = dict(request.POST)
-        tasks.exec_cookiecutter(cookie, request.user.id, options)
-        return redirect('/success')
 
-    return render(request, 'cookiecutters/bake.html', {'cookie': cookie})
+    if request.method == 'POST':
+        form = cookie.form(request.POST)
+        if form.is_valid():
+            tasks.exec_cookiecutter(cookie, form.cleaned_data, request.user.id, form.use_github)
+            #return redirect('/success')
+            return render(request, 'cookiecutters/bake_success.html', locals())
+    else:
+        form = cookie.form()
+
+    return render(request, 'cookiecutters/bake.html', locals())
 
 
 
 class CookieGeneratorView(DetailView):
     context_object_name = 'cookie'
     model = CookieCutter
-    template_name = 'cookiecutters/generator.html'
+    template_name = 'cookiecutters/detail.html'
 
     def get_context_data(self, **kwargs):
         context = super(CookieGeneratorView, self).get_context_data(**kwargs)

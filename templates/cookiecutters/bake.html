@@ -1,0 +1,22 @@
+{% extends "simple.html" %}
+
+{% block title %}Bake {{ cookie.name }}{% endblock %}
+
+{% block content %}
+<h1>Bake {{ cookie.name }}</h1>
+<form action="" method="POST">{% csrf_token %}
+{% comment %}
+<ul>
+{% for opt, default in cookie.options.items %}
+<li>{{ opt }}: <input type="text" name="{{ opt }}" placeholder="{{ default }}"></li>
+{% endfor %}
+</ul>
+{% endcomment %}
+{{ form.as_p }}
+
+<input type="submit" name="_github" value="Make github repository!">
+<input type="submit" name="_zipfile" value="Download a zipfile">
+</form>
+
+
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "simple.html" %}
+
+{% block title %}Success!{% endblock %}
+
+<h1>Success</h1>
+{% block content %}
+<ul>
+{% for opt, value in form.cleaned_data.items %}
+  <li>{{ opt }}: {{ value }}</li>
+{% endfor %}
+<ul>
+{% endblock %}
