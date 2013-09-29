@@ -40,7 +40,7 @@ def exec_cookiecutter(cookie, options, user_id=None, use_github=True):
         assert use_github is not True
 
     out = os.path.join(settings.COOKIECUTTERS_TMP, "user_{0}".format(user_id))
-    options['repo_name'] = slugify(options['repo_name'])
+    options['repo_name'] = slugify(options['repo_name']).replace('-', '_')
 
     try:
         os.makedirs(out) # this should be useless
