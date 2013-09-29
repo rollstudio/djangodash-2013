@@ -1,3 +1,4 @@
+from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404, render
 
 from rest_framework import status
@@ -81,7 +82,8 @@ class BakeCookieView(APIView):
             print task.status
 
             return Response({
-                'task_id': task.id
+                'task_id': task.id,
+                'url': reverse('task_status', args=(task.id,)),
             }, status.HTTP_201_CREATED)
 
         return Response(form.errors, status=status.HTTP_400_BAD_REQUEST)
