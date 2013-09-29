@@ -1309,11 +1309,18 @@ html, body {
 .container #steps li#end .done h1 {
   font-size: 31px;
 }
-/* line 227, ../sass/screen.scss */
+/* line 225, ../sass/screen.scss */
+.container #steps li#end .done a {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-decoration: none;
+  word-spacing: 0px;
+}
+/* line 233, ../sass/screen.scss */
 .container #steps li#end .loading_container {
   display: none;
 }
-/* line 229, ../sass/screen.scss */
+/* line 235, ../sass/screen.scss */
 .container #steps li#end .loading_container span {
   margin: 0px auto;
   display: block;
@@ -1328,27 +1335,27 @@ html, body {
   width: 130px;
   height: 110px;
 }
-/* line 236, ../sass/screen.scss */
+/* line 242, ../sass/screen.scss */
 .container #steps li#end .loading_container h1 {
   margin-top: 10px;
 }
-/* line 241, ../sass/screen.scss */
+/* line 247, ../sass/screen.scss */
 .container #steps li#end .download_container {
   display: table;
   width: 50%;
   margin: 0px auto;
 }
-/* line 245, ../sass/screen.scss */
+/* line 251, ../sass/screen.scss */
 .container #steps li#end .download_container > * {
   display: table-cell;
 }
-/* line 249, ../sass/screen.scss */
+/* line 255, ../sass/screen.scss */
 .container #steps li#end .download_container p {
   text-align: center;
   padding-top: 10%;
   font-size: 30px;
 }
-/* line 254, ../sass/screen.scss */
+/* line 260, ../sass/screen.scss */
 .container #steps li#end .download_container .github {
   background-size: 100%;
   background-image: url('../images/github.png?1380489920');
@@ -1364,12 +1371,12 @@ html, body {
   transition: opacity 0.3s;
   cursor: pointer;
 }
-/* line 259, ../sass/screen.scss */
+/* line 265, ../sass/screen.scss */
 .container #steps li#end .download_container .github:hover {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
   opacity: 1;
 }
-/* line 265, ../sass/screen.scss */
+/* line 271, ../sass/screen.scss */
 .container #steps li#end .download_container .download {
   background-size: 100%;
   background-image: url('../images/download.png?1380489921');
@@ -1385,13 +1392,13 @@ html, body {
   transition: opacity 0.3s;
   cursor: pointer;
 }
-/* line 270, ../sass/screen.scss */
+/* line 276, ../sass/screen.scss */
 .container #steps li#end .download_container .download:hover {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
   opacity: 1;
 }
 
-/* line 283, ../sass/screen.scss */
+/* line 289, ../sass/screen.scss */
 input[type='text'] {
   outline: none;
   padding: 8px;
@@ -1411,12 +1418,12 @@ input[type='text'] {
   -o-transition: border 0.25s linear, color 0.25s linear, background-color 0.25s linear;
   transition: border 0.25s linear, color 0.25s linear, background-color 0.25s linear;
 }
-/* line 296, ../sass/screen.scss */
+/* line 302, ../sass/screen.scss */
 input[type='text'].error {
   border-color: #c34f4f;
 }
 
-/* line 302, ../sass/screen.scss */
+/* line 308, ../sass/screen.scss */
 .moveToLeftFade {
   -webkit-animation: moveToLeftFade 0.7s ease both;
   -moz-animation: moveToLeftFade 0.7s ease both;
@@ -1425,7 +1432,7 @@ input[type='text'].error {
   animation: moveToLeftFade 0.7s ease both;
 }
 
-/* line 305, ../sass/screen.scss */
+/* line 311, ../sass/screen.scss */
 .moveFromRightFade {
   -webkit-animation: moveFromRightFade 0.7s ease both;
   -moz-animation: moveFromRightFade 0.7s ease both;
@@ -1434,7 +1441,7 @@ input[type='text'].error {
   animation: moveFromRightFade 0.7s ease both;
 }
 
-/* line 308, ../sass/screen.scss */
+/* line 314, ../sass/screen.scss */
 .moveToRightFade {
   -webkit-animation: moveToRightFade 0.7s ease both;
   -moz-animation: moveToRightFade 0.7s ease both;
@@ -1443,7 +1450,7 @@ input[type='text'].error {
   animation: moveToRightFade 0.7s ease both;
 }
 
-/* line 311, ../sass/screen.scss */
+/* line 317, ../sass/screen.scss */
 .moveFromLeftFade {
   -webkit-animation: moveFromLeftFade 0.7s ease both;
   -moz-animation: moveFromLeftFade 0.7s ease both;
@@ -1452,12 +1459,12 @@ input[type='text'].error {
   animation: moveFromLeftFade 0.7s ease both;
 }
 
-/* line 316, ../sass/screen.scss */
+/* line 322, ../sass/screen.scss */
 .twitter-typeahead {
   width: 100%;
 }
 
-/* line 321, ../sass/screen.scss */
+/* line 327, ../sass/screen.scss */
 .typeahead,
 .tt-hint {
   width: 574px;
@@ -1472,17 +1479,17 @@ input[type='text'].error {
   outline: none;
 }
 
-/* line 334, ../sass/screen.scss */
+/* line 340, ../sass/screen.scss */
 .typeahead {
   background-color: #fff;
 }
 
-/* line 338, ../sass/screen.scss */
+/* line 344, ../sass/screen.scss */
 .tt-hint {
   color: #999999;
 }
 
-/* line 342, ../sass/screen.scss */
+/* line 348, ../sass/screen.scss */
 .tt-dropdown-menu {
   width: 100%;
   margin-top: -5px;
@@ -1496,37 +1503,37 @@ input[type='text'].error {
   border-top: 0px;
 }
 
-/* line 353, ../sass/screen.scss */
+/* line 359, ../sass/screen.scss */
 .tt-suggestion {
   padding: 8px 20px;
   font-size: 14px;
   line-height: 18px;
 }
 
-/* line 359, ../sass/screen.scss */
+/* line 365, ../sass/screen.scss */
 .tt-suggestion + .tt-suggestion {
   font-size: 14px;
   border-top: 1px solid #ccc;
 }
 
-/* line 364, ../sass/screen.scss */
+/* line 370, ../sass/screen.scss */
 .tt-suggestions .repo-language {
   float: right;
   font-style: italic;
 }
 
-/* line 369, ../sass/screen.scss */
+/* line 375, ../sass/screen.scss */
 .tt-suggestions .repo-name {
   font-size: 20px;
   font-weight: bold;
 }
 
-/* line 374, ../sass/screen.scss */
+/* line 380, ../sass/screen.scss */
 .tt-suggestions .repo-description {
   margin: 0;
 }
 
-/* line 378, ../sass/screen.scss */
+/* line 384, ../sass/screen.scss */
 .twitter-typeahead .tt-suggestion.tt-is-under-cursor {
   color: #03739c;
 }

@@ -26,11 +26,11 @@ class fRoll
 			name: 'asda'
 			minLength: 0
 			local: window.Bakehouse.cookies
-			valueKey: 'value'
+			valueKey: 'name'
 			template: [
 			   '<p class="repo-language">{{language}}</p>',
-			   '<p class="repo-name">{{options.project_name}}</p>',
-			   '<p class="repo-description">{{description}}</p>'
+			   '<p class="repo-name">{{name}}</p>',
+			   '<p class="repo-description">{{options.description}}</p>'
 			].join('')
 			engine: Hogan
 
@@ -88,7 +88,9 @@ class fRoll
 						window.open json.result
 
 					if @ChoiseDownload == 'github'
-						console.log 'githuub'
+						$('.done').append "
+							<a href='#{json.result}'>Go to your GitHub repo</a>
+						"
 
 					$('.loading_container').fadeOut 400, ->
 						$('.done').fadeIn()

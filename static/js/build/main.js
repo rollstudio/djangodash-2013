@@ -27,8 +27,8 @@
         name: 'asda',
         minLength: 0,
         local: window.Bakehouse.cookies,
-        valueKey: 'value',
-        template: ['<p class="repo-language">{{language}}</p>', '<p class="repo-name">{{options.project_name}}</p>', '<p class="repo-description">{{description}}</p>'].join(''),
+        valueKey: 'name',
+        template: ['<p class="repo-language">{{language}}</p>', '<p class="repo-name">{{name}}</p>', '<p class="repo-description">{{options.description}}</p>'].join(''),
         engine: Hogan
       });
       return input.on('typeahead:selected typeahead:autocompleted', function(e, datum) {
@@ -94,7 +94,7 @@
               window.open(json.result);
             }
             if (_this.ChoiseDownload === 'github') {
-              console.log('githuub');
+              $('.done').append("							<a href='" + json.result + "'>Go to your GitHub repo</a>						");
             }
             return $('.loading_container').fadeOut(400, function() {
               $('.done').fadeIn();
