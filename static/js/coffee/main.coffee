@@ -22,7 +22,7 @@ class fRoll
 		input.typeahead
 			name: 'asda'
 			minLength: 0
-			local: window.generators
+			local: window.Bakehouse.cookies
 			valueKey: 'value'
 			template: [
 			   '<p class="repo-language">{{language}}</p>',
@@ -37,8 +37,8 @@ class fRoll
 			@GeneratorId = datum.id
 
 
-	loadGenerator: (id_generator) ->
-		choise = _.where window.generators, {id: @GeneratorId}
+	loadGenerator: ->
+		choise = _.where window.Bakehouse.cookies, {id: @GeneratorId}
 
 		return if !choise[0]
 
@@ -173,4 +173,4 @@ $(document).on 'click', 'a.next', ->
 
 
 $('a.start').on 'click', ->
-	roll.loadGenerator 5
+	roll.loadGenerator()

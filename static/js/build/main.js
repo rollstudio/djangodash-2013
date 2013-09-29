@@ -24,7 +24,7 @@
       input.typeahead({
         name: 'asda',
         minLength: 0,
-        local: window.generators,
+        local: window.Bakehouse.cookies,
         valueKey: 'value',
         template: ['<p class="repo-language">{{language}}</p>', '<p class="repo-name">{{options.project_name}}</p>', '<p class="repo-description">{{description}}</p>'].join(''),
         engine: Hogan,
@@ -37,9 +37,9 @@
       });
     };
 
-    fRoll.prototype.loadGenerator = function(id_generator) {
+    fRoll.prototype.loadGenerator = function() {
       var choise;
-      choise = _.where(window.generators, {
+      choise = _.where(window.Bakehouse.cookies, {
         id: this.GeneratorId
       });
       if (!choise[0]) {
@@ -181,7 +181,7 @@
   });
 
   $('a.start').on('click', function() {
-    return roll.loadGenerator(5);
+    return roll.loadGenerator();
   });
 
 }).call(this);
