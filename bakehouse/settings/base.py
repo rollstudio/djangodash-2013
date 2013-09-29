@@ -5,6 +5,7 @@ from sys import path
 
 from os.path import abspath, basename, dirname, join, normpath
 
+from django.core.urlresolvers import reverse_lazy
 from django.core.exceptions import ImproperlyConfigured
 from django.conf import global_settings as DEFAULT_SETTINGS
 
@@ -224,3 +225,5 @@ REST_FRAMEWORK = {
 AWS_BUCKET = get_env_setting('AWS_BUCKET', 'bakehouse')
 AWS_ACCESS_KEY_ID = get_env_setting('AWS_ACCESS_KEY_ID', '')
 AWS_SECRET_ACCESS_KEY = get_env_setting('AWS_SECRET_ACCESS_KEY', '')
+
+LOGIN_REDIRECT_URL = reverse_lazy('github_callback')
