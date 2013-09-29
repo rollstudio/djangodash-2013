@@ -1,8 +1,14 @@
-from django.views.generic import DetailView
-from django.shortcuts import get_object_or_404, render, redirect
+from django.shortcuts import get_object_or_404, render
+
+from rest_framework import status
+from rest_framework import generics
+from rest_framework.views import APIView
+from rest_framework.response import Response
 
 from cookiecutters.models import CookieCutter
 from cookiecutters import tasks
+
+from .serializers import CookieCutterSerializer
 
 
 def cookiecutter_detail(request, username, cookie):
@@ -25,15 +31,54 @@ def bake(request, username, cookie):
     return render(request, 'cookiecutters/bake.html', locals())
 
 
-
-class CookieGeneratorView(DetailView):
-    context_object_name = 'cookie'
+class JSONBakeView(generics.RetrieveAPIView):
     model = CookieCutter
-    template_name = 'cookiecutters/detail.html'
+    serializer_class = CookieCutterSerializer
 
-    def get_context_data(self, **kwargs):
-        context = super(CookieGeneratorView, self).get_context_data(**kwargs)
+    def get_object(self, queryset=None):
+        username = self.kwargs.get('username', None)
+        cookie = self.kwargs.get('cookie', None)
 
-        context['form'] = GeneratorForm(context['cookie'])
+        return get_object_or_404(CookieCutter, user__username=username,
+                                 name=cookie)
 
-        return context
+
+
+class CookieDetailView(generics.RetrieveAPIView):
+    model = CookieCutter
+    serializer_class = CookieCutterSerializer
+
+    def get_object(self, queryset=None):
+        username = self.kwargs.get('username', None)
+        cookie = self.kwargs.get('cookie', None)
+
+        return get_object_or_404(CookieCutter, user__username=username,
+                                 name=cookie)
+
+
+class BakeCookieView(APIView):
+    def get_object(self, queryset=None):
+        username = self.kwargs.get('username', None)
+        cookie = self.kwargs.get('cookie', None)
+
+        return get_object_or_404(CookieCutter, user__username=username,
+                                 name=cookie)
+
+    def post(self, request, *args, **kwargs):
+
+        print kwargs
+
+        obj = self.get_object()
+
+        print obj
+
+        form = obj.form(request.POST)
+        if form.is_valid():
+            tasks.exec_cookiecutter(obj, form.cleaned_data, request.user.id, form.use_github)
+
+            return Response({
+                'task_id': 2
+            }, status.HTTP_201_CREATED)
+
+        return Response(form.errors, status=status.HTTP_400_BAD_REQUEST)
+

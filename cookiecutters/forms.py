@@ -1,31 +1,20 @@
 from django import forms
 
 
-class GeneratorForm(forms.Form):
-    def __init__(self, cookie, *args, **kwargs):
-        self.cookie = cookie
-
-        super(GeneratorForm, self).__init__(*args, **kwargs)
-
-        for question in cookie.questions:
-            c = forms.CharField(label=question, widget=forms.TextInput(attrs={
-                'placeholder': question.default
-            }))
-
-            self.fields[question.name] = c
-
-
 class CookieCutterForm(forms.Form):
-
     repo_name = forms.CharField(label="Repo name")
 
     def __init__(self, cookie, *args, **kwargs):
         super(CookieCutterForm, self).__init__(*args, **kwargs)
-        
+
         self.cookie = cookie
+
+        if cookie.options is None:
+            return
+
         for opt, default in cookie.options.items():
             field = forms.CharField(initial=default, required=False,
-                label=opt.replace('_', ' ').capitalize())
+                                    label=opt.replace('_', ' ').capitalize())
             self.fields[opt] = field
 
     def clean(self):

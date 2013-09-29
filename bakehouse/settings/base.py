@@ -162,9 +162,9 @@ INSTALLED_APPS = (
     'allauth.socialaccount.providers.github',
 
     'djcelery',
+    'rest_framework',
 
     'cookiecutters',
-    
 )
 
 

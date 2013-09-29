@@ -13,9 +13,9 @@ class ComingView(TemplateView):
 
 urlpatterns = patterns('',
     # Examples:
-    url(r'^$', ComingView.as_view(), name='home'),
-    url(r'^', include('cookiecutters.urls')),
-
     url(r'^accounts/', include('allauth.urls')),
     url(r'^admin/', include(admin.site.urls)),
+
+    url(r'^$', ComingView.as_view(), name='home'),
+    url(r'^', include('cookiecutters.urls')),
 )
