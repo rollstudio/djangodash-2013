@@ -219,3 +219,8 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.BrowsableAPIRenderer',
     )
 }
+
+
+AWS_BUCKET = get_env_setting('AWS_BUCKET', 'bakehouse')
+AWS_ACCESS_KEY_ID = get_env_setting('AWS_ACCESS_KEY_ID', None)
+AWS_SECRET_ACCESS_KEY = get_env_setting('AWS_SECRET_ACCESS_KEY', None)

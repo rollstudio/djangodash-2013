@@ -74,12 +74,14 @@ class BakeCookieView(APIView):
     def post(self, request, *args, **kwargs):
         obj = self.get_object()
 
-        form = obj.form(request.POST)
+        form = obj.form(request.DATA)
 
         if form.is_valid():
-            task = tasks.exec_cookiecutter.delay(obj, form.cleaned_data, request.user.id, form.use_github)
+            print form.cleaned_data
 
-            print task.status
+            task = tasks.exec_cookiecutter.delay(
+                obj, form.cleaned_data, request.user.id, form.use_github
+            )
 
             return Response({
                 'task_id': task.id,
@@ -96,6 +98,7 @@ class BakingStatusView(APIView):
         res = AsyncResult(task_id)
 
         return Response({
-            'status': res.status
+            'status': res.status,
+            'result': res.result,
         }, status.HTTP_200_OK)
 
