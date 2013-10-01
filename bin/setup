@@ -35,8 +35,7 @@ if [[ $VIRTUAL_ENV != "$PWD/env" ]]; then
 fi
 
 if [[ $VIRTUAL_ENV != "$PWD/env" ]]; then
-    echo "Failed to activate virtualenv."
-    exit 1
+    fatal_error "Failed to activate virtualenv."
 fi
 
 cd ..
@@ -44,12 +43,11 @@ cd ..
 function ensure_deps {
     for file in $@; do
         if [[ -a ${file} ]]; then
-            pip install -r ${file}
-            #break;
+            pip install -r ${file} >/dev/null 
+                || fatal_error "Error installing dependencies from ${file}"
         fi
     done
-    echo "Cannot find pip requirements."
-    exit 1
+    fatal_error "Cannot find pip requirements."
 }
 
 ( cd requirements ; ensure_deps custom.txt base.txt )
@@ -57,7 +55,13 @@ function ensure_deps {
 
 pushd cookiecutters/settings
 
-export DJANGO_SETTINGS_MODULE="cookiecutters.settings.base"
-export SECRET_KEY=`python -c "import os; print os.urandom(24)"`
+function read_var {
+    eval "$1='$2'"
+    read -p "$1 (${!1}): " $1;
+}
+
+echo "Setting the required env vars .."
+read_var DJANGO_SETTINGS_MODULE "cookiecutters.settings.base"
+read_var SECRET_KEY `python -c "import os; print os.urandom(24)"`
 
 popd
