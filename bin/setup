@@ -11,12 +11,13 @@ function fatal_error
 {
 #   ----------------------------------------------------------------
 #   Function for exit due to fatal program error
-#   	Accepts 1 argument:
-#   		string containing descriptive error message
+#       Accepts 1 argument:
+#           string containing descriptive error message
 #   ----------------------------------------------------------------
 
     echo "${PROGNAME}: ${1:-"Unknown Error"}" 1>&2
-    exit 1
+    # exit 1
+    return 1
 }
 
 
@@ -43,8 +44,8 @@ cd ..
 function ensure_deps {
     for file in $@; do
         if [[ -a ${file} ]]; then
-            pip install -r ${file} >/dev/null 
-                || fatal_error "Error installing dependencies from ${file}"
+            pip -q install -r ${file} ||
+                fatal_error "Error installing dependencies from ${file}"
         fi
     done
     fatal_error "Cannot find pip requirements."
