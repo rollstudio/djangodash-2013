@@ -9,7 +9,7 @@ ALLOWED_HOSTS = ['.rollstudio.it']
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'dash.db',
+        'NAME': normpath(join(SITE_ROOT, 'dash.db')),
         'USER': '',
         'PASSWORD': '',
         'HOST': '',
