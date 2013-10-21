@@ -21,6 +21,9 @@ class BakeHyperlinkField(serializers.HyperlinkedIdentityField):
             'cookie': name
         }
 
+        if user is None or name is None:
+            return ''
+
         return reverse(view_name, kwargs=kwargs, request=request, format=format)
 
 
