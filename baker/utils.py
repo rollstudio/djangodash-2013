@@ -36,13 +36,15 @@ def create_repository(user_id, repo_name):
 
 
 def push_directory_to_repo(directory, github_repo):
+    url = github_repo.ssh_url.replace('@github.com', '@github.com-bakehouse')
+
     os.chdir(directory)
 
     subprocess.call(['git', 'init'])
     subprocess.call(['git', 'add', '.'])
     subprocess.call(['git', 'commit', '-m', 'Hello world'])
-    subprocess.call(['git', 'remote', 'add', 'origin', github_repo.ssh_url])
-    subprocess.call(['git', 'push', 'origin', 'master'])
+    subprocess.call(['git', 'remote', 'add', 'origin', url])
+    subprocess.call(['git', 'push', '-u', 'origin', 'master'])
 
 
 def make_zip(directory):
