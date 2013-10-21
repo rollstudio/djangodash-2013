@@ -7,12 +7,6 @@ from django.db.models.signals import post_save
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 
-from djorm_pgarray.fields import ArrayField
-from djorm_expressions.models import ExpressionManager
-from djorm_expressions.base import SqlExpression
-
-from json_field import JSONField
-
 from cookiecutters import tasks, forms
 
 
@@ -28,29 +22,15 @@ class Question(object):
         return self.name.replace('_', ' ').title()
 
 
-class ArrayExpression(object):
-    def __init__(self, field):
-        self.field = field
-
-    def contains(self, value):
-        return SqlExpression(self.field, "@>", value)
-
-    def overlap(self, value):
-        return SqlExpression(self.field, "&&", value)
-
-
 class CookieCutter(models.Model):
     name = models.CharField(_('Name'), max_length=100)
     description = models.TextField(_('Description'))
     url = models.URLField(_('URL'))
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
-    #options = models.TextField(editable=False)
-    options = JSONField(editable=False)
+    options = models.TextField(editable=False)
 
     language = models.CharField(_('Language'), max_length=50)
-    tags = ArrayField(_('Tags'), dbtype='text')
-
-    objects = ExpressionManager()
+    tags = models.CharField(_('Tags'))
 
     class Meta(object):
         verbose_name = _('Cookie Cutter')
