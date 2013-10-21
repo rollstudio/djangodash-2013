@@ -1,22 +1,17 @@
 import os
 import zipfile
+import subprocess
 
 from boto.s3.key import Key
 from boto.s3.connection import S3Connection
 
 from github3 import login
-from gittle import Gittle, GittleAuth
 
 from django.conf import settings
 
 from allauth.socialaccount.models import SocialToken
-from cookiecutter.utils import work_in
 
 from django.core.exceptions import ImproperlyConfigured
-
-
-class FixedGittleAuth(GittleAuth):
-    KWARG_KEYS = ()
 
 
 def create_repository(user_id, repo_name):
@@ -41,24 +36,13 @@ def create_repository(user_id, repo_name):
 
 
 def push_directory_to_repo(directory, github_repo):
-    auth = FixedGittleAuth(pkey=open(settings.GITHUB_PRIVATE_KEY))
-    repo = Gittle.init(directory, auth=auth)
+    os.chdir(directory)
 
-    files = []
-    with work_in(directory):
-        for root, dirnames, filenames in os.walk('.'):
-            # remove the leading './'
-            root = root[2:]
-            # skip .git directories
-            if '.git' in dirnames:
-                dirnames.remove('.git')
-
-            for f in filenames:
-                path = os.path.join(root, f)
-                files.append(str(path))
-
-    repo.commit(name='bakehouse', message='Hello world', files=files)
-    repo.push(github_repo.ssh_url, branch_name='master')
+    subprocess.call(['git', 'init'])
+    subprocess.call(['git', 'add', '.'])
+    subprocess.call(['git', 'commit', '-m', 'Hello world'])
+    subprocess.call(['git', 'remote', 'add', 'origin', github_repo.ssh_url])
+    subprocess.call(['git', 'push', 'origin', 'master'])
 
 
 def make_zip(directory):
