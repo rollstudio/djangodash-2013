@@ -1,6 +1,8 @@
 import os
 import shutil
 import json
+import subprocess
+
 
 from github3 import GitHubError
 
@@ -8,7 +10,6 @@ from django.conf import settings
 from django.template.defaultfilters import slugify
 
 from celery import task
-from gittle import Gittle
 from cookiecutter.generate import generate_files
 
 from baker import utils
@@ -18,10 +19,11 @@ from baker import utils
 def update_repo(cookie):
     # TODO: add commit info to the CookieCutter model
     if not os.path.isdir(cookie.repo_path):
-        repo = Gittle.clone(cookie.url, cookie.repo_path)
+        subprocess.call(['git', 'clone', cookie.repo_path])
     else:
-        repo = Gittle(cookie.repo_path, cookie.url)
-        repo.pull()
+        os.chdir(cookie.repo_path)
+
+        subprocess.call(['git', 'pull', cookie.repo_path])
 
     cookie.options = {'repo_name': 'your repo'}
     options_file = os.path.join(cookie.repo_path, 'cookiecutter.json')
