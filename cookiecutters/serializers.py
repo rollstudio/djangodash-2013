@@ -1,3 +1,5 @@
+import json
+
 from rest_framework import serializers
 from rest_framework.reverse import reverse
 
@@ -32,7 +34,9 @@ class CookieCutterSerializer(serializers.HyperlinkedModelSerializer):
 
     def _value(self, obj):
         if obj.options:
-            return obj.options.get('project_name', 'No name')
+            j = json.loads(obj.options)
+
+            return j.options.get('project_name', 'No name')
         return 'No options'
 
     class Meta:
