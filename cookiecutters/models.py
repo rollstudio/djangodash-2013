@@ -30,7 +30,7 @@ class CookieCutter(models.Model):
     options = models.TextField(editable=False)
 
     language = models.CharField(_('Language'), max_length=50)
-    tags = models.CharField(_('Tags'), blank=True)
+    tags = models.CharField(_('Tags'), blank=True, max_length=255)
 
     class Meta(object):
         verbose_name = _('Cookie Cutter')
