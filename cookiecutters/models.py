@@ -7,6 +7,8 @@ from django.db.models.signals import post_save
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 
+from json_field import JSONField
+
 from cookiecutters import tasks, forms
 
 
@@ -27,7 +29,7 @@ class CookieCutter(models.Model):
     description = models.TextField(_('Description'), blank=True)
     url = models.URLField(_('URL'))
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
-    options = models.TextField(editable=False)
+    options = JSONField(editable=False)
 
     language = models.CharField(_('Language'), max_length=50)
     tags = models.CharField(_('Tags'), blank=True, max_length=255)
