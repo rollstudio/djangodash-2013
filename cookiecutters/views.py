@@ -1,3 +1,5 @@
+import json
+
 from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404
 from django.views.generic.base import TemplateView
@@ -22,7 +24,14 @@ class HomeView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
 
-        s = CookieCutterSerializer(CookieCutter.objects.all(), many=True)
+        c = []
+
+        for cookie in CookieCutter.objects.all():
+            cookie.options = json.loads(cookie.options)
+
+            c.append(cookie)
+
+        s = CookieCutterSerializer(c, many=True)
 
         context['cookies'] = JSONRenderer().render(s.data)
 
