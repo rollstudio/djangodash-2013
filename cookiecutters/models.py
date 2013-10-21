@@ -72,8 +72,7 @@ class CookieCutter(models.Model):
 
 
 def cookie_post_save(sender, instance, created, **kwargs):
-    if created:
-        tasks.update_repo.delay(instance)
+    tasks.update_repo.delay(instance)
 
 
 post_save.connect(cookie_post_save, sender=CookieCutter)
