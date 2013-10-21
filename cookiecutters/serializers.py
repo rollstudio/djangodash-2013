@@ -36,7 +36,7 @@ class CookieCutterSerializer(serializers.HyperlinkedModelSerializer):
         if obj.options:
             j = json.loads(obj.options)
 
-            return j.options.get('project_name', 'No name')
+            return j.get('project_name', 'No name')
         return 'No options'
 
     class Meta:
