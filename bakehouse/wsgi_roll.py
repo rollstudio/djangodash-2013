@@ -40,6 +40,8 @@ _application = get_wsgi_application()
 def application(environ, start_response):
 
     os.environ['SECRET_KEY'] = environ['SECRET_KEY']
+    os.environ['AWS_ACCESS_KEY_ID'] = environ['AWS_ACCESS_KEY_ID']
+    os.environ['AWS_SECRET_ACCESS_KEY'] = environ['AWS_SECRET_ACCESS_KEY']
     # from django.conf import settings
     # settings.DEBUG = True
 
