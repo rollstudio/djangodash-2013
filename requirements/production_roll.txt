@@ -1,0 +1,13 @@
+Django==1.5.4
+South==0.8.2
+django-allauth==0.13.0
+djorm-ext-core==0.4.3
+djorm-ext-expressions==0.5
+djorm-ext-pgarray==0.8
+django-celery==3.0.23
+git+https://github.com/audreyr/cookiecutter.git#egg=cookiecutter
+github3.py==0.7.0
+django-json-field==0.5.5
+-e git+https://github.com/patrick91/gittle.git#egg=gittle
+djangorestframework==2.3.8
+boto==2.13.3
