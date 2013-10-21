@@ -14,15 +14,11 @@ class NaiveSerializer(serializers.WritableField):
 class BakeHyperlinkField(serializers.HyperlinkedIdentityField):
     def get_url(self, obj, view_name, request, format):
         user = getattr(obj, 'user', None)
-        name = getattr(obj, 'name', None)
 
         kwargs = {
             'username': user.username,
-            'cookie': name
+            'id': obj.pk
         }
-
-        if user is None or name is None:
-            return ''
 
         return reverse(view_name, kwargs=kwargs, request=request, format=format)
 

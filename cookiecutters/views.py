@@ -61,10 +61,10 @@ class CookieDetailView(generics.RetrieveAPIView):
 class BakeCookieView(APIView):
     def get_object(self, queryset=None):
         username = self.kwargs.get('username', None)
-        cookie = self.kwargs.get('cookie', None)
+        cookie = self.kwargs.get('id', None)
 
         return get_object_or_404(CookieCutter, user__username=username,
-                                 name=cookie)
+                                 pk=cookie)
 
     def post(self, request, *args, **kwargs):
         obj = self.get_object()
