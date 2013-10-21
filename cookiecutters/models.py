@@ -24,13 +24,13 @@ class Question(object):
 
 class CookieCutter(models.Model):
     name = models.CharField(_('Name'), max_length=100)
-    description = models.TextField(_('Description'))
+    description = models.TextField(_('Description'), blank=True)
     url = models.URLField(_('URL'))
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
     options = models.TextField(editable=False)
 
     language = models.CharField(_('Language'), max_length=50)
-    tags = models.CharField(_('Tags'))
+    tags = models.CharField(_('Tags'), blank=True)
 
     class Meta(object):
         verbose_name = _('Cookie Cutter')
