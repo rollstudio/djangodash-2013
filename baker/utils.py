@@ -44,6 +44,9 @@ def push_directory_to_repo(directory, github_repo):
     subprocess.call(['git', 'add', '.'])
     subprocess.call(['git', 'commit', '-m', 'Hello world'])
     subprocess.call(['git', 'remote', 'add', 'origin', url])
+    subprocess.call(['git', 'config', 'user.email', 'hello@rollstudio.it'])
+    subprocess.call(['git', 'config', 'user.name', 'Bakehouse'])
+    subprocess.call(['git', 'remote', 'add', 'origin', url])
     subprocess.call(['git', 'push', '-u', 'origin', 'master'])
 
 
