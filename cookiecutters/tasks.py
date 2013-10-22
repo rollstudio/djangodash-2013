@@ -18,7 +18,7 @@ def clone_repo(cookie):
 
     os.chdir(d)
 
-    subprocess.call(['git', 'clone', cookie.repo_path])
+    subprocess.call(['git', 'clone', cookie.url])
 
     return d
 
@@ -27,11 +27,11 @@ def clone_repo(cookie):
 def update_repo(cookie):
     # TODO: add commit info to the CookieCutter model
     if not os.path.isdir(cookie.repo_path):
-        subprocess.call(['git', 'clone', cookie.repo_path])
+        subprocess.call(['git', 'clone', cookie.url])
     else:
         os.chdir(cookie.repo_path)
 
-        subprocess.call(['git', 'pull', cookie.repo_path])
+        subprocess.call(['git', 'pull'])
 
     cookie.options = {'repo_name': 'your repo'}
     options_file = os.path.join(cookie.repo_path, 'cookiecutter.json')
