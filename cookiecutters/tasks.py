@@ -16,7 +16,7 @@ from baker import utils
 def clone_repo(cookie):
     d = tempfile.mkdtemp()
 
-    os.chdir(cookie.repo_path)
+    os.chdir(d)
 
     subprocess.call(['git', 'clone', cookie.repo_path])
 
