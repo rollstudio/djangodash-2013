@@ -1,10 +1,8 @@
 import os
 import shutil
 import json
+import tempfile
 import subprocess
-
-
-from github3 import GitHubError
 
 from django.conf import settings
 from django.template.defaultfilters import slugify
@@ -13,6 +11,16 @@ from celery import task
 from cookiecutter.generate import generate_files
 
 from baker import utils
+
+
+def clone_repo(cookie):
+    d = tempfile.mkdtemp()
+
+    os.chdir(cookie.repo_path)
+
+    subprocess.call(['git', 'clone', cookie.repo_path])
+
+    return d
 
 
 @task()
@@ -45,8 +53,11 @@ def exec_cookiecutter(cookie, options, user_id=None, use_github=True):
     options['repo_name'] = slugify(options['repo_name']).replace('-', '_')
 
     try:
-        os.makedirs(out) # this should be useless
-        generate_files(cookie.repo_path, {'cookiecutter': options}, out)
+        os.makedirs(out)  # this should be useless
+
+        repo = clone_repo(cookie)
+
+        generate_files(repo, {'cookiecutter': options}, out)
 
         repo_path = os.path.join(out, options['repo_name'])
         if use_github:
