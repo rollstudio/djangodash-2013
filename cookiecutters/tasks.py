@@ -18,9 +18,9 @@ def clone_repo(cookie):
 
     os.chdir(d)
 
-    subprocess.call(['git', 'clone', cookie.url])
+    subprocess.call(['git', 'clone', cookie.url, 'tmp'])
 
-    return d
+    return os.path.join(d, 'tmp')
 
 
 @task()
@@ -53,7 +53,10 @@ def exec_cookiecutter(cookie, options, user_id=None, use_github=True):
     options['repo_name'] = slugify(options['repo_name']).replace('-', '_')
 
     try:
-        os.makedirs(out)  # this should be useless
+        if os.path.exists(out):
+            shutil.rmtree(out)
+
+        os.makedirs(out)
 
         repo = clone_repo(cookie)
 
@@ -66,6 +69,5 @@ def exec_cookiecutter(cookie, options, user_id=None, use_github=True):
             return repo.html_url
         else:
             return utils.make_zip(repo_path)
-    finally:
-        if os.path.exists(out):
-            shutil.rmtree(out)
+    except:
+        pass
